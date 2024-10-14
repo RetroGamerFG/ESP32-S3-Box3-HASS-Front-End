@@ -4,24 +4,52 @@
 
 substitutions:
   name: esp32-s3box-3
-  friendly_name: ESP32-S3-Box-3
-  
-  external_media_player: your_media_player  ##change this to your external media player enity_id: do not include media_player.
-  home_assistant_host: http://homeassistant.local:8123 ##change to the full url or IP of your HA server including port
-  tts_voice_speed: "24000" #options #nabu casa "24000" #piper "16000" elevenlabs "44100" must include quotes
-  
-#################### ON DEVICE WAKE WORDS #######################################
-####          all of the below wakewords are installed on the device        #####
-####      you can use any of these without re-compiling - just say them!    #####
-#################################################################################
-# TO REMOVE A WAKE WORD - COMMENT OUT THE CORESPONDING LINE FROM THE CONFIG BELOW - CTRL + F to search for "models" 
-  micro_wake_word_model_1: alexa
-  micro_wake_word_model_2: hey_jarvis
-  micro_wake_word_model_3: okay_nabu # latest test can also be used >> replace okay_nabu with this url https://github.com/kahrendt/microWakeWord/releases/download/okay_nabu/okay_nabu.json
-  micro_wake_word_model_4: hey_mycroft
-####################################################################
+  friendly_name: esp32-s3box-3
 
-#####  Days and months #####
+#### Home Assistant Fields ####
+## Add in the server address, set the timezone, and change tts speed if slow ##
+  home_assistant_host: http://homeassistant.local:8123
+  local_time: "America/Chicago" 
+  tts_voice_speed: "24000" #options #nabu casa "24000" #piper "16000" elevenlabs "44100" must include quotes
+
+#### Entity Devices ####
+## Substitute names for entities to control and service to perform (i.e. light.lamp & light.toggle) ##
+## Leave as "none.none" if not being used ##
+  entity1: none.none
+  entity1_service: none.none
+
+  entity2: none.none
+  entity2_service: none.none
+
+  entity3: none.none
+  entity3_service: none.none
+
+  entity4: none.none
+  entity4_service: none.none
+
+  entity5: none.none
+  entity5_service: none.none
+
+  entity6: none.none
+  entity6_service: none.none
+
+#### Media Players ####
+## Substitue names if you want to control additional media players ##
+  local_player: ${friendly_name} ##if you change the entity id in HA, you'll need to change it here to get the entity attributes
+  external_player: none  ##change this to your external media player enity_id: do not include media_player.
+  media_player1: none
+  media_player2: none
+
+#### Scenes ####
+## Substitute names for scenes to activate ##
+  scene1: none
+  scene2: none
+
+#### Weather Entity ####
+## Change this if you want to use another weather entity (dependent on attributes) ##
+  weather_entity: weather.forecast_home
+
+####  Days and months ####
 ## Change the values on the right to match your locale ##
   monday: Monday
   tuesday: Tuesday
@@ -43,14 +71,19 @@ substitutions:
   oct: October
   nov: November
   dec: December
-#####################################################################
 
-##### DO NOT CHANGE SUBSTITUTIONS BELOW THIS LINE ######
-#####      UNLESS YOU KNOW WHAT YOU ARE DOING     ######  
-  font_glyphs: '&@!"''%()+=,-_.:°/$€£¥?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyzÀàÁáÂâÃãÄäĀāĂăÅåǺǻẠạĄąÆæǼǽĆćĈĉČčĊċÇçĎďĐđÐðÈèÉéÊêẼẽĚěËëĒēĔĕĖėẸẹĘęĜĝǦǧĞğĠġĢģĤĥĦħıÌìÍíÎîĨĩÏïĪīĬĭİỊịĮįȷĴĵĶķĸĹĺĽľĻļŁłĿŀŃńÑñŇňŅņƝɲŊŋŉÒòÓóÔôÕõÖöŌōŎŏŐőỌọǪǫØøǾǿŒœŔŕŘřŖŗŚśŜŝŠšŞşȘșẞßŤťŢţȚțŦŧÞþÙùÚúÛûŨũÜüŪūŬŭŮůŰűỤụŲųẀẁẂẃŴŵẄẅỲỳÝýŶŷỸỹŸÿȲȳŹźŽžŻżĲĳƏə'  
+#### Micro Wake Word Model (Local Only) ####
+## These are supported words for local voice processing. If these change in the future, don't touch otherwise. ##
+  micro_wake_word_model_1: alexa
+  micro_wake_word_model_2: hey_jarvis
+  micro_wake_word_model_3: okay_nabu # latest test can also be used >> replace okay_nabu with this url https://github.com/kahrendt/microWakeWord/releases/download/okay_nabu/okay_nabu.json
+  micro_wake_word_model_4: hey_mycroft
 
-############# END OF SUBSTITUTIONS #################
-####################################################
+#### Font Glyphs ####
+## This is used for fonts. DO NOT TOUCH ##
+  font_glyphs: '&@!"''%()+=,-_.:°/$€£¥?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyzÀàÁáÂâÃãÄäĀāĂăÅåǺǻẠạĄąÆæǼǽĆćĈĉČčĊċÇçĎďĐđÐðÈèÉéÊêẼẽĚěËëĒēĔĕĖėẸẹĘęĜĝǦǧĞğĠġĢģĤĥĦħıÌìÍíÎîĨĩÏïĪīĬĭİỊịĮįȷĴĵĶķĸĹĺĽľĻļŁłĿŀŃńÑñŇňŅņƝɲŊŋŉÒòÓóÔôÕõÖöŌōŎŏŐőỌọǪǫØøǾǿŒœŔŕŘřŖŗŚśŜŝŠšŞşȘșẞßŤťŢţȚțŦŧÞþÙùÚúÛûŨũÜüŪūŬŭŮůŰűỤụŲųẀẁẂẃŴŵẄẅỲỳÝýŶŷỸỹŸÿȲȳŹźŽžŻżĲĳƏə'
+
+
 
 esphome:
   name: ${name}
@@ -74,8 +107,9 @@ esphome:
               id: adf_media_player
               volume: 0 
   project:
-    name: "BigBobbas.s3box"
+    name: "BigBobbas.s3box.HASSFrontEnd"
     version: "2024.09.01"
+  
 esp32:
   board: esp32s3box
   flash_size: 16MB
@@ -107,6 +141,7 @@ external_components:
   - source: github://clydebarrow/esphome@remote_display
     refresh: 60min
     components: [ vnc]   
+
 api:
   on_client_connected:
     - lambda: |-
@@ -148,10 +183,13 @@ wifi:
   on_disconnect:
     - lambda: |-
         id(wifi_connection) = false;
-captive_portal:      
+
+captive_portal:    
+
 time:
   - platform: homeassistant
     id: ha_time
+    timezone: ${local_time}
     
 interval:
   - interval: 30s
@@ -193,7 +231,7 @@ interval:
                     wifi.connected:
                 then:
                   - lambda: "id(wifi_connection) = false;"
-      
+
 select:
   - platform: template
     entity_category: config
@@ -255,8 +293,38 @@ select:
                     id: time_display_format
                     state: !lambda 'return "12 Hr";'
         - component.update: s3_box_lcd
-                
-script:           
+
+  - platform: template
+    entity_category: config
+    name: Background Mode
+    id: background_mode_opt
+    optimistic: true
+    restore_value: true
+    options:
+      - Light
+      - Dark
+    initial_option: Light
+    on_value:
+      - if:
+          condition:
+            lambda: return x == "Light";
+          then:
+            - text_sensor.template.publish:
+                id: background_mode
+                state: !lambda 'return "Light";'
+            - lambda: id(background_mode_set) = true;
+            - component.update: s3_box_lcd
+      - if:
+          condition:
+            lambda: return x == "Dark";
+          then:
+            - text_sensor.template.publish:
+                id: background_mode
+                state: !lambda 'return "Dark";'
+            - lambda: id(background_mode_set) = false;
+            - component.update: s3_box_lcd
+
+script:
   - id: set_volume
     then:
       - media_player.volume_set:
@@ -318,7 +386,7 @@ script:
           - homeassistant.service:
               service: media_player.play_media
               data:
-                entity_id: media_player.${external_media_player}
+                entity_id: media_player.${external_player}
                 media_content_id: '${home_assistant_host}/local/sounds/timer_finished.mp3'
                 media_content_type: music
           - delay: 1700ms
@@ -397,43 +465,86 @@ script:
     then:
       - lambda: |-
           id(current_pin) += "0";  
-          ESP_LOGD("increment_digit_0", "Current PIN: %s", id(current_pin).c_str());       
+          ESP_LOGD("increment_digit_0", "Current PIN: %s", id(current_pin).c_str()); 
+    
 globals:
   - id: wifi_connection
     type: bool
     restore_value: no
     initial_value: "false"
+
   - id: api_connection
     type: bool
     restore_value: no
     initial_value: "false" 
+
   - id: mute_value
     type: bool
     restore_value: no
     initial_value: "false" 
+
   - id: speaker_volume
     type: int
     restore_value: no
     initial_value: '5'
+
   - id: media_state
     type: bool
     restore_value: no
     initial_value: "false"
+
   - id: global_first_active_timer
     type: voice_assistant::Timer
     restore_value: false
+
   - id: global_is_timer_active
     type: bool
     restore_value: false
+
   - id: global_first_timer
     type: voice_assistant::Timer
     restore_value: false
+
   - id: global_is_timer
     type: bool
-    restore_value: false    
+    restore_value: false 
+
   - id: current_pin
     type: std::string
-    initial_value: "" 
+    initial_value: ""
+
+  - id: background_mode_set
+    type: bool
+    restore_value: false
+
+  - id: entity_page
+    type: int
+    restore_value: yes
+    initial_value: '1'
+
+  - id: media_player_page
+    type: int
+    restore_value: yes
+    initial_value: '1'
+
+  - id: local_player_progress
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: media_player1_progress
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: media_player2_progress
+    type: int
+    restore_value: no
+    initial_value: '0'
+
+  - id: isExternal
+    type: bool
+    restore_value: false
 
 number:
   - id: s_saver_delay
@@ -503,12 +614,12 @@ number:
       - component.update: s_default_brightness
       - script.execute: saver_enabled
       - component.update: s3_box_lcd
+
 button:
   - platform: restart
     id: reboot
     name: "Reboot"
-    entity_category: diagnostic
-    
+
 switch:
   - platform: template
     name: Display conversation
@@ -526,13 +637,17 @@ switch:
     restore_mode: RESTORE_DEFAULT_OFF
     entity_category: config  
     on_turn_on: 
-      media_player.volume_set:    
-        id: adf_media_player
-        volume: 0    
-    on_turn_off: 
-      media_player.volume_set:    
-        id: adf_media_player
-        volume: 1.0 
+      then:
+      - media_player.volume_set:    
+          id: adf_media_player
+          volume: 0
+      - lambda: id(isExternal) = true;
+    on_turn_off:
+      then:
+      - media_player.volume_set:    
+          id: adf_media_player
+          volume: 1.0 
+      - lambda: id(isExternal) = false;
       
   - platform: template
     name: Mute
@@ -633,13 +748,13 @@ switch:
         - homeassistant.service:
             service: media_player.volume_mute
             data:
-              entity_id: media_player.${external_media_player}
+              entity_id: media_player.${external_player}
     on_turn_off:
         - homeassistant.service:
             service: media_player.volume_mute
             data:
-              entity_id: media_player.${external_media_player}    
- 
+              entity_id: media_player.${external_player}      
+
 output:
   - platform: ledc
     pin: GPIO47
@@ -654,7 +769,7 @@ light:
     restore_mode: ALWAYS_ON
     default_transition_length: 50ms
     
-sensor:         
+sensor:
   - platform: uptime
     id: up_sens
     on_value:
@@ -680,8 +795,13 @@ sensor:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
     entity_category: "diagnostic"
-    device_class: ""   
-    
+    device_class: "" 
+
+  - platform: homeassistant
+    id: weather_temperature
+    entity_id: ${weather_entity}
+    attribute: temperature
+
 text_sensor:
   - id: text_request
     platform: template
@@ -702,6 +822,7 @@ text_sensor:
           std::string truncated = esphome::str_truncate(name.c_str(),31);
           id(text_response).state = (truncated+"...").c_str();
         }
+
   - platform: wifi_info
     ip_address:
       name: IP Address
@@ -738,26 +859,322 @@ text_sensor:
   - platform: template
     id: time_display_format
     update_interval: never
-  - platform: homeassistant
-    entity_id: media_player.${external_media_player}
-    id: ha_media_status
-    on_value:
-      component.update: s3_box_lcd
-
-  - platform: homeassistant
-    entity_id: media_player.${external_media_player}
-    id: ha_media_title
-    attribute: media_content_id
-    on_value:
-      component.update: s3_box_lcd 
 
   - platform: homeassistant
     name: "Alarm Status"
     entity_id: alarm_control_panel.alarmo
     id: alarm_status  
     on_value:
-      - component.update: s3_box_lcd    
-      
+      - component.update: s3_box_lcd 
+
+#### Extra Sensors ####
+##Local Media Player (this device)
+  - platform: homeassistant
+    entity_id: media_player.${local_player}
+    id: local_player_name
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${local_player}
+    id: local_player_artist
+    attribute: media_artist
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${local_player}
+    id: local_player_title
+    attribute: media_title
+    on_value:
+      component.update: s3_box_lcd 
+
+  - platform: homeassistant
+    id: local_player_duration
+    entity_id: media_player.${local_player}
+    attribute: media_duration
+
+  - platform: homeassistant
+    id: local_player_position
+    entity_id: media_player.${local_player}
+    attribute: media_position
+    on_value:
+    - if:
+        condition:
+          - switch.is_off: output_audio
+          - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+        then:
+          - lambda: |-
+              double status = atof(id(local_player_position).state.c_str());
+              double duration = atof(id(local_player_duration).state.c_str());
+              double progress = 0;
+              int output = 0;
+
+              if(status > 0 && duration > 0) {
+                progress = (status / duration);
+                output = 225 * progress; //change this if the progress bar size changes (default: 225)
+              }
+
+              id(local_player_progress) = output;
+    - component.update: s3_box_lcd 
+
+##External Player (on enable)
+  - platform: homeassistant
+    entity_id: media_player.${external_player}
+    id: external_player_state
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${external_player}
+    id: external_player_name
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${external_player}
+    id: external_player_artist
+    attribute: media_artist
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${external_player}
+    id: external_player_title
+    attribute: media_title
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: external_player_duration
+    entity_id: media_player.${external_player}
+    attribute: media_duration
+
+  - platform: homeassistant
+    id: external_player_position
+    entity_id: media_player.${external_player}
+    attribute: media_position
+    on_value:
+    - if:
+        condition:
+          - switch.is_on: output_audio
+          - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+        then:
+          - lambda: |-
+              double status = atof(id(local_player_position).state.c_str());
+              double duration = atof(id(local_player_duration).state.c_str());
+              double progress = 0;
+              int output = 0;
+
+              if(status > 0 && duration > 0) {
+                progress = (status / duration);
+                output = 225 * progress; //change this if the progress bar size changes (default: 225)
+              }
+
+              id(local_player_progress) = output;
+    - component.update: s3_box_lcd 
+
+##Additional Media Player 1
+  - platform: homeassistant
+    entity_id: media_player.${media_player1}
+    id: media_player1_state
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player1}
+    id: media_player1_name
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player1}
+    id: media_player1_artist
+    attribute: media_artist
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player1}
+    id: media_player1_title
+    attribute: media_title
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: media_player1_duration
+    entity_id: media_player.${media_player1}
+    attribute: media_duration
+
+  - platform: homeassistant
+    id: media_player1_position
+    entity_id: media_player.${media_player1}
+    attribute: media_position
+    on_value:
+    - if:
+        condition:
+          - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+        then:
+          - lambda: |-
+              double status = atof(id(media_player1_position).state.c_str());
+              double duration = atof(id(media_player1_duration).state.c_str());
+              double progress = 0;
+              int output = 0;
+
+              if(status > 0 && duration > 0) {
+                progress = (status / duration);
+                output = 225 * progress; //change this if the progress bar size changes (default: 225)
+              }
+
+              id(media_player1_progress) = output;
+    - component.update: s3_box_lcd 
+
+##Additional Media Player 2
+  - platform: homeassistant
+    entity_id: media_player.${media_player2}
+    id: media_player2_state
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player2}
+    id: media_player2_name
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player2}
+    id: media_player2_artist
+    attribute: media_artist
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    entity_id: media_player.${media_player2}
+    id: media_player2_title
+    attribute: media_title
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: media_player2_duration
+    entity_id: media_player.${media_player2}
+    attribute: media_duration
+
+  - platform: homeassistant
+    id: media_player2_position
+    entity_id: media_player.${media_player2}
+    attribute: media_position
+    on_value:
+    - if:
+        condition:
+          - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+        then:
+          - lambda: |-
+              double status = atof(id(media_player1_position).state.c_str());
+              double duration = atof(id(media_player1_duration).state.c_str());
+              double progress = 0;
+              int output = 0;
+
+              if(status > 0 && duration > 0) {
+                progress = (status / duration);
+                output = 225 * progress; //change this if the progress bar size changes (default: 225)
+              }
+
+              id(media_player2_progress) = output;
+    - component.update: s3_box_lcd 
+
+## Scenes ##
+  - platform: homeassistant
+    id: scene1_name
+    entity_id: scene.${scene1}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene2_name
+    entity_id: scene.${scene2}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+## Background Mode Toggle
+  - platform: template
+    id: background_mode
+
+  - platform: homeassistant
+    id: weather
+    entity_id: ${weather_entity}
+    on_value:
+      - component.update: s3_box_lcd
+
+#### Entity Text Sensors ####
+## These display information about entities. Defaults include name and state. For specific attributes, manual changes may be needed ##
+  - platform: homeassistant
+    id: entity1_state
+    entity_id: ${entity1}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity1_name
+    entity_id: ${entity1}
+    attribute: friendly_name
+
+  - platform: homeassistant
+    id: entity2_state
+    entity_id: ${entity2}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity2_name
+    entity_id: ${entity2}
+    attribute: friendly_name
+
+  - platform: homeassistant
+    id: entity3_state
+    entity_id: ${entity3}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity3_name
+    entity_id: ${entity3}
+    attribute: friendly_name
+
+  - platform: homeassistant
+    id: entity4_state
+    entity_id: ${entity4}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity4_name
+    entity_id: ${entity4}
+    attribute: friendly_name
+
+  - platform: homeassistant
+    id: entity5_state
+    entity_id: ${entity5}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity5_name
+    entity_id: ${entity5}
+    attribute: friendly_name
+
+  - platform: homeassistant
+    id: entity6_state
+    entity_id: ${entity6}
+    on_value:
+      component.update: s3_box_lcd
+  - platform: homeassistant
+    id: entity6_name
+    entity_id: ${entity6}
+    attribute: friendly_name
+
 i2s_audio:
   - id: i2s_shared
     i2s_lrclk_pin:
@@ -821,6 +1238,7 @@ media_player:
       - lambda: |-
           id(media_state) = false;
       - component.update: s3_box_lcd
+
 microphone:
   - platform: adf_pipeline
     id: box_mic
@@ -860,7 +1278,7 @@ micro_wake_word:
               - homeassistant.service:
                   service: media_player.play_media
                   data:
-                    entity_id: media_player.${external_media_player}
+                    entity_id: media_player.${external_player}
                     media_content_id: '${home_assistant_host}/local/sounds/awake.mp3'
                     media_content_type: music
               - media_player.stop
@@ -904,7 +1322,7 @@ voice_assistant:
               - homeassistant.service:
                   service: media_player.play_media
                   data:
-                    entity_id: media_player.${external_media_player}
+                    entity_id: media_player.${external_player}
                     media_content_id: '${home_assistant_host}/local/sounds/awake.mp3'
                     media_content_type: music
     - media_player.stop
@@ -956,7 +1374,7 @@ voice_assistant:
           - homeassistant.service:
               service: media_player.play_media
               data:
-                entity_id: media_player.${external_media_player}
+                entity_id: media_player.${external_player}
                 media_content_id: !lambda 'return x;'
                 media_content_type: music
                 announce: "false"
@@ -1070,8 +1488,10 @@ voice_assistant:
               - switch.turn_on: timer_ringing
               - script.execute: timer_started
               - display.page.show: timer_finished_page
-              - component.update: s3_box_lcd
-    
+              - component.update: s3_box_lcd      
+
+#### Assist Images ####
+## Change these file locations if you want to change the images used for Assist actions ##
 image:
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/error.png"
     id: error_img
@@ -1108,7 +1528,39 @@ image:
     resize: 80x75
     type: RGB24
     use_transparency: true 
+ 
 font:
+  - file: "gfonts://Roboto"
+    id: roboto_30
+    size: 30
+    glyphs: 
+      '${font_glyphs}'
+
+  - file: "gfonts://Roboto"
+    id: roboto_18
+    size: 18
+    glyphs: 
+      '${font_glyphs}'
+
+  - file: "gfonts://Roboto"
+    id: roboto_14
+    size: 14
+    glyphs: 
+      '${font_glyphs}'
+
+  - file: "gfonts://Roboto"
+    id: roboto_12
+    size: 12
+    glyphs: 
+      '${font_glyphs}'
+
+  - file: "gfonts://Roboto"
+    id: roboto_9
+    size: 9
+    glyphs: 
+      '${font_glyphs}'
+
+#### Original Fonts from main project / fonts folder ####
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/consola.ttf"
     id: my_font
     size: 14
@@ -1159,11 +1611,13 @@ font:
     id: my_font82
     size: 82
     glyphs:
-      '${font_glyphs}'     
+      '${font_glyphs}'
 
+#### Icons ####
+## If an icon fails to load, be sure to check it's added here first ##
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
-    id: icon_font_55
-    size: 45
+    id: icon_font_30
+    size: 30
     glyphs: &icon_glyphs
       - "\U000F0079"#battery 100%
       - "\U000F007A"#battery 10%
@@ -1244,24 +1698,67 @@ font:
       - "\U000F1A1B"#gas
       - "\U000F1C3B"#battery charging/usb powered
       - "\U000F1C6F"#info
-
+      - "\U000F035C"#menu
+      - "\U000F0185"#assist
+      - "\U000F12C4"#assist-configure
+      - "\U000F050E"#light-dark-mode
+      - "\U000F03A4"#box-1
+      - "\U000F03A7"#box-2
+      - "\U000F03AA"#box-3
+      - "\U000F0594"#weather-clear-night
+      - "\U000F0590"#weather-cloudy
+      - "\U000F0591"#weather-fog
+      - "\U000F0592"#weather-hail
+      - "\U000F0593"#weather-lightning
+      - "\U000F067E"#weather-lightning-rainy
+      - "\U000F0595"#weather-partly-cloudy
+      - "\U000F0596"#weather-pouring
+      - "\U000F0597"#weather-rainy
+      - "\U000F0598"#weather-snowy
+      - "\U000F067F"#weather-snowy-rainy
+      - "\U000F0599"#weather-sunny
+      - "\U000F059D"#weather-windy
+      - "\U000F059E"#weather-windy-variant
+      - "\U000F0F2F"#weather-exceptional
+      - "\U000F05A9"#wifi
+      - "\U000F097E"#switch
+      - "\U000F0425"#power
+      - "\U000F04C3"#speaker
       
+  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
+    id: icon_font_60
+    size: 60
+    glyphs: *icon_glyphs
+
+  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
+    id: icon_font_55
+    size: 55
+    glyphs: *icon_glyphs
+
+  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
+    id: icon_font_20
+    size: 20
+    glyphs: *icon_glyphs
+
+#### Additional Icon Sizes ####
+  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/DSEG14Classic-Regular.ttf"    
+    id: my_fontseg
+    size: 72
+
+  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/DSEG7Classic-Regular.ttf"
+    id: my_fontseg2
+    size: 52 #original = 72
+
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
     id: icon_font_180
     size: 180
     glyphs: *icon_glyphs
-
 
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
     id: icon_font_80
     size: 75
     glyphs: *icon_glyphs
 
-  - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/materialdesignicons-webfont.ttf"
-    id: icon_font_60
-    size: 60
-    glyphs: *icon_glyphs
-      
 color:
   - id: green
     hex: '75D15F'
@@ -1287,27 +1784,77 @@ color:
     hex: '73264D'
   - id: light_blue
     hex: 'CFE2F3'
-  - id: bg_blue
-    hex: '032341'
-  - id: bg_purple
-    hex: '301020'
-  - id: bg_green
-    hex: '05350B'
-  - id: bg_red
-    hex: '3C0000'
-  - id: bg_pink
-    hex: '61034D'
-  - id: bg_charcoal
-    hex: '323232'
-  - id: bg_brown
-    hex: '41220D'
-  - id: bg_grey
-    hex: '4F4F4F'
+  - id: gray
+    hex: 'B4B4B4'
+  - id: orange
+    hex: 'FFA500'
+
+#### Background Mode Colors ####
+## Change these if you want to change the default colors for each mode ##
+## Light Mode ##
+  - id: background_light        #background-color
+    hex: 'FAFAFA'
+  - id: primary_light           #topbar
+    hex: '03A9F4'
+  - id: secondary_light         #sidebar-icon-background
+    hex: 'E0F5FE'
+  - id: divider_light           #border
+    hex: 'E0E0E0'
+
+  - id: icons_light             #icons
+    hex: '7A7A7A'
+
+  - id: secondary_text_color_light
+    hex: '727272'
+
+  - id: weather_icon_backdrop_light
+    hex: 'DAE3EC'
+
+  - id: entity_icon_backdrop_off_light
+    hex: 'ECECEC'
+
+## Dark Mode ##
+  - id: background_dark         #background-color
+    hex: '111111'
+  - id: primary_dark            #topbar
+    hex: '101E24'
+  - id: secondary_dark          #selected icon
+    hex: '192E37'
+  - id: sidebar_dark            #sidebar
+    hex: '1C1C1C'
+  - id: divider_dark            #border
+    hex: '343434'
+
+  - id: icons_dark              #text and icons
+    hex: '929292'
+  - id: icons_secondary_dark    #selected icon & assist on the topbar
+    hex: 'E1E1E1'
+  - id: icons_secondary_unselected_dark
+    hex: 'B7BABB'
+
+  - id: primary_text_color_dark
+    hex: 'E0E0E0'
+  - id: secondary_text_color_dark
+    hex: '9B9B9B'
+
+  - id: weather_icon_backdrop_dark
+    hex: '242D36'
+  - id: entity_icon_backdrop_off_dark
+    hex: '363636'
+
+## Universal (Both Modes) ##
+  - id: selected_icon
+    hex: '03A9F4'
+
+  - id: weather_icon
+    hex: '44739E'
+
+  - id: entity_icon_off
+    hex: '9E9E9E'
 
 spi:
   clk_pin: 7
   mosi_pin: 6
-
 
 display:
   - platform: ili9xxx
@@ -1321,409 +1868,771 @@ display:
       inverted: true
     update_interval: never
     invert_colors: false
-    ##################################################################################################
-    ################ The below section defines, what is displayed on the screen,        ##############
-    ################ the colours and mdi icons are defined above under font: and Color: ##############
-    ################ they are then referenced in the config below.                      ##############
-    ##################################################################################################
     pages:
-      - id: idle_page ##### home page ######
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-          it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }        
-          it.printf(20, 75, id(icon_font_80), blue,"\U000F050F");
-          it.printf(120, 75, id(icon_font_80), yellow,"\U000F06E8" );
-          it.printf(220, 75, id(icon_font_80), purple,"\U000F0210");
-          it.printf(20, 155, id(icon_font_80), red,"\U000F075A");
-          it.printf(120, 155, id(icon_font_80), blue,"\U000F0FCE");
-          it.printf(220, 155, id(icon_font_80), lime,"\U000F08D6");
 
-      - id: template_page ##### template page ##]##
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(20, 75, id(icon_font_80), light_blue,"\U000F06E8");
-          it.printf(120, 75, id(icon_font_80), light_blue,"\U000F06E8");
-          it.printf(220, 75, id(icon_font_80), light_blue, "\U000F06E8");
-          it.printf(20, 155, id(icon_font_80), light_blue,"\U000F06E8");
-          it.printf(120, 155, id(icon_font_80), light_blue,"\U000F06E8");
-          it.printf(220, 155, id(icon_font_80), light_blue, "\U000F06E8");
-          
-      - id: info_page ##### info page #####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(160, 75, id(my_font5), light_blue, TextAlign::CENTER, "IP Address");
-          it.printf(160, 95, id(my_font5), yellow, TextAlign::CENTER, "%s", id(ip_addr).state.c_str());
-          it.printf(160, 125, id(my_font5), light_blue, TextAlign::CENTER, "Host Name");
-          it.printf(160, 145, id(my_font5), yellow, TextAlign::CENTER, "${name}.local");
-          it.printf(160, 175, id(my_font5), light_blue, TextAlign::CENTER, "Device Uptime DDD:H:M:S");
-          it.printf(160, 195, id(my_font5), yellow, TextAlign::CENTER, "%s", id(up_sens_text).state.c_str());
-          
-      - id: ss_set_page ##### screen saver settings page #####
-        lambda: |-
-          it.fill(id(black));
-          it.printf(160, 70, id(icon_font_80), light_blue, TextAlign::CENTER, "\U000F08D6");  
-          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Screensaver Settings");
-          it.printf(250, 115, id(my_font5), light_blue, TextAlign::RIGHT, "Timeout Settings :");
-          it.printf(255, 95, id(icon_font_55), lime, "\U000F08D6");
-          it.printf(250, 145, id(my_font5), light_blue, TextAlign::RIGHT, "Enable screensaver :");
-          if(id(s_saver).state) {
-                 it.printf(255, 135, id(icon_font_55), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 135, id(icon_font_55), blue_drk, "\U000F0A19");
-          } 
-          it.printf(250, 205, id(my_font5), light_blue, TextAlign::RIGHT, "Timeout to blank :");          
-          if(id(s_saver_mode).state) {
-                 it.printf(255, 195, id(icon_font_55), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 195, id(icon_font_55), blue_drk, "\U000F0A19");
-          }         
-          
-      - id: ww_set_page ##### voice settings page #####
-        lambda: |-
-          it.fill(id(black));
-          it.printf(160, 50, id(icon_font_55), light_blue, TextAlign::CENTER, "\U000F08D6");  
-          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Voice Settings");
-          it.printf(155, 85, id(my_font5), light_blue, TextAlign::CENTER, "tap to change");
-          it.printf(135, 115, id(my_font5), light_blue, TextAlign::RIGHT, "WakeWord :");
-          it.printf(310, 115, id(my_font5), lime, TextAlign::RIGHT, "%s", id(wakeword_location).state.c_str());
-          it.printf(250, 145, id(my_font5), light_blue, TextAlign::RIGHT, "Mute responses :"); 
-          if(id(mute_response_switch).state) {
-                 it.printf(255, 135, id(icon_font_55), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 135, id(icon_font_55), blue_drk, "\U000F0A19");
-          }          
-          it.printf(250, 175, id(my_font5), light_blue, TextAlign::RIGHT, "Wake up sound :");          
-          if(id(wake_sound).state) {
-                 it.printf(255, 165, id(icon_font_55), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 165, id(icon_font_55), blue_drk, "\U000F0A19");
-          } 
-          it.printf(250, 205, id(my_font5), light_blue, TextAlign::RIGHT, "Show Conversation :");          
-          if(id(display_conversation).state) {
-                 it.printf(255, 195, id(icon_font_55), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 195, id(icon_font_55), blue_drk, "\U000F0A19");
-          }           
-         
-      - id: climate_page ##### climate page #####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(20, 75, id(icon_font_80), light_blue,"\U000F050F");
-          it.printf(120, 75, id(icon_font_80), light_blue,"\U000F050F");
-          it.printf(220, 75, id(icon_font_80), light_blue, "\U000F050F");
-          it.printf(20, 155, id(icon_font_80), light_blue,"\U000F050F");
-          it.printf(120, 155, id(icon_font_80), light_blue,"\U000F050F");
-          it.printf(220, 155, id(icon_font_80), light_blue, "\U000F050F");
-
-      - id: lights_page ##### lights page ####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(20, 75, id(icon_font_80), light_blue,"\U000F0335");
-          it.printf(120, 75, id(icon_font_80), light_blue,"\U000F0335");
-          it.printf(220, 75, id(icon_font_80), light_blue, "\U000F0335");
-          it.printf(20, 155, id(icon_font_80), light_blue,"\U000F0335");
-          it.printf(120, 155, id(icon_font_80), light_blue,"\U000F0335");
-          it.printf(220, 155, id(icon_font_80), light_blue, "\U000F0335");
-
-      - id: media_page ##### media player page #####
+#### Idle/Main Page ####
+## The main page, which includes weather and timer information ##
+      - id: idle_page
         lambda: |-  
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F0185");              //assist
+
+          it.printf(5, 47, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F06E8" );                  //light
+          it.printf(5, 82, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0FCE");                   //scenes
+          it.printf(5, 117, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F075A");                  //audio
+
+          it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
+
+          //
+          //Lovelace Card (Standard)
+          it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+          it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+          it.filled_circle(60, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+          it.filled_circle(295, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-right
+
+          it.filled_rectangle(60, 48, 235, 73, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(55, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(296, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.filled_circle(61, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+          it.filled_circle(294, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+          it.filled_circle(61, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+          it.filled_circle(294, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+          it.filled_rectangle(61, 49, 234, 71, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(56, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(295, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+          //
+          //Weather Entity
+
+          it.filled_circle(96, 85, 25, id(background_mode_set) ? weather_icon_backdrop_light : weather_icon_backdrop_dark);
+
+          if(id(weather).state == "clear-night") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0594");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Clear Night");
+          } else if(id(weather).state == "cloudy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0590");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Cloudy");
+          } else if(id(weather).state == "fog") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0591");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Fog");
+          } else if(id(weather).state == "hail") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0592");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Hail");
+          } else if(id(weather).state == "lightning") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0593");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Lightning");
+          } else if(id(weather).state == "lightning-rainy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F067E");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Lightning & Rainy");
+          } else if(id(weather).state == "partlycloudy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0595");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Partly Cloudy");
+          } else if(id(weather).state == "pouring") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0596");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Pouring");
+          } else if(id(weather).state == "rainy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0597");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Rainy");
+          } else if(id(weather).state == "snowy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0598");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Snowy");
+          } else if(id(weather).state == "snowy-rainy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F067F");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Snowy/Rainy");
+          } else if(id(weather).state == "sunny") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0599");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Sunny");
+          } else if(id(weather).state == "windy") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F059D");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Windy");
+          } else if(id(weather).state == "windy-variant") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F059E");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Windy (Variant)");
+          } else if(id(weather).state == "exceptional") {
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0F2F");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Exceptional");
           } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
+            it.print(81, 70, id(icon_font_30), weather_icon, "\U000F0599");
+            it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Unavailable");
           }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
+
+          it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, "%d°F", (int)id(weather_temperature).state);
+
+          //
+          //Timer Entity
+
+          //
+          //Position 2A - Lovelace Card (Small)
+          it.filled_circle(60, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+          it.filled_circle(168, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+          it.filled_circle(60, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //bottom-left
+          it.filled_circle(168, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-right
+
+          it.filled_rectangle(60, 126, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(55, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(169, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.filled_circle(61, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+          it.filled_circle(167, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+          it.filled_circle(61, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                             //bottom-left
+          it.filled_circle(167, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-right
+
+          it.filled_rectangle(61, 127, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(56, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(168, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+          //
+          //Timer Info
+          it.filled_circle(114, 156, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
+          it.printf(99, 141, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0150");
+
+          if (id(time_remaining_0).state != "0:00:00") {
+            it.printf(114, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(time_remaining_0).state.c_str());
           }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
+          else {
+            it.printf(114, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "No Timers Active");
           }
+
+          //
+          //Alarmo Entity (will only show if found in Home Assistant)
+
+          if(id(alarm_status).state != "") {
+            //
+            //Position 2B - Lovelace Card (Small)
+            it.filled_circle(187, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-left
+            it.filled_circle(295, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+            it.filled_circle(187, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(295, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-right
+
+            it.filled_rectangle(187, 126, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(182, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(188, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-left
+            it.filled_circle(294, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+            it.filled_circle(188, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(294, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-right
+
+            it.filled_rectangle(188, 127, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(183, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(295, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+            if(id(alarm_status).state == "disarmed") {
+              it.filled_circle(241, 156, 20, id(background_mode_set) ? entity_icon_backdrop_off_light : entity_icon_backdrop_off_dark);
+              it.printf(226, 141, id(icon_font_30), entity_icon_off, "\U000F099E");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            } else if(id(alarm_status).state == "arming") {
+              it.filled_circle(241, 156, 20, amber);
+              it.printf(226, 141, id(icon_font_30), white, "\U000F0565");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            } else if(id(alarm_status).state == "armed_home") {
+              it.filled_circle(241, 156, 20, green);
+              it.printf(226, 141, id(icon_font_30), white, "\U000F068A");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            } else if(id(alarm_status).state == "armed_away") {
+              it.filled_circle(241, 156, 20, green);
+              it.printf(226, 141, id(icon_font_30), white, "\U000F099D");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            } else if(id(alarm_status).state == "armed_night") {
+              it.filled_circle(241, 156, 20, green);
+              it.printf(226, 141, id(icon_font_30), white, "\U000F1828");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            } else {
+              it.filled_circle(241, 156, 20, id(background_mode_set) ? entity_icon_backdrop_off_light : entity_icon_backdrop_off_dark);
+              it.printf(226, 141, id(icon_font_30), entity_icon_off, "\U000F099E");
+              it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%s", id(alarm_status).state.c_str());
+            }
+          }
+
+          //
+          //Additional State Details
+
           if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
+            it.filled_rectangle(0, 232, 340, 240, red);                                                                           //mute-status
           }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          if(id(media_state) == true) {
-                 it.printf(160, 80, id(my_font5), lime, TextAlign::CENTER, "Playing");
-          } else {
-                 it.printf(160, 80, id(my_font5), light_blue, TextAlign::CENTER, "Nothing Playing");
+
+          if(id(api_connection) == false || id(wifi_connection) == false) {
+            it.filled_rectangle(0, 232, 340, 240, orange);                                                                        //wifi and esphome-connection-status
           }
-          it.printf(20, 100, id(icon_font_80), blue,"\U000F075E");
-          it.printf(120, 100, id(icon_font_80), blue,"\U000F040E");
-          it.printf(220, 100, id(icon_font_80), blue,"\U000F075D");
-          if(id(media_mute).state) {          
-                  it.printf(120, 165, id(icon_font_80), red,"\U000F0581");
-          } else {        
-                  it.printf(120, 165, id(icon_font_80), lime,"\U000F057E");
-          }
-      - id: ext_media_page ##### media player page #####
-        lambda: |-  
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(160, 80, id(my_font5), lime, TextAlign::CENTER, id(ha_media_status).state.c_str());
-          it.printf(20, 100, id(icon_font_80), blue,"\U000F04AE");
-          it.printf(120, 100, id(icon_font_80), blue,"\U000F040E");
-          it.printf(220, 100, id(icon_font_80), blue,"\U000F04AD");
-          if(id(ext_media_mute).state) {          
-                  it.printf(120, 165, id(icon_font_80), red,"\U000F0581");
-          } else {        
-                  it.printf(120, 165, id(icon_font_80), lime,"\U000F057E");
-          }
-          it.printf(20, 165, id(icon_font_80), blue,"\U000F075E");
-          it.printf(220, 165, id(icon_font_80), blue,"\U000F075D");
-          
-      - id: scenes_page ##### scenes page #####
+
+#### Info/Settings Page ####
+## Includes various settings, such as ip address info, wakeword location, screensaver, and background mode ##
+      - id: info_page
         lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F0185");              //assist
+
+          it.printf(5, 47, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F06E8" );                  //light
+          it.printf(5, 82, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0FCE");                   //scenes
+          it.printf(5, 117, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F075A");                  //audio
+
+          it.filled_rectangle(2, 202, 36, 36, id(background_mode_set) ? secondary_light : secondary_dark);
+          it.printf(5, 205, id(icon_font_30), selected_icon, "\U000F0493");                                                       //info(selected-ver)
+
+          //
+          //Lovelace Card (Settings-Ver)
+          it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-left
+          it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //top-right
+          it.filled_circle(60, 225, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-left
+          it.filled_circle(295, 225, 5, id(background_mode_set) ? divider_light : divider_dark);                                  //bottom-right
+
+          it.filled_rectangle(60, 48, 235, 183, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(55, 53, 5, 172, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(296, 53, 5, 172, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.filled_circle(61, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+          it.filled_circle(294, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+          it.filled_circle(61, 224, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+          it.filled_circle(294, 224, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+          it.filled_rectangle(61, 49, 234, 181, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(56, 54, 5, 171, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(295, 54, 5, 171, id(background_mode_set) ? white : sidebar_dark);
+
+          //
+          //Info page content
+
+          it.printf(106, 60, id(roboto_18), id(background_mode_set) ? black : white, "Wifi Status");
           if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
+            it.printf(106, 80, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "IP: %s", id(ip_addr).state.c_str());
+          } 
+          else {
+            it.printf(106, 80, id(roboto_14), red, "Failed to connect");
           }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }    
-          it.printf(20, 75, id(icon_font_80), light_blue,"\U000F0FCE");
-          it.printf(120, 75, id(icon_font_80), light_blue,"\U000F0FCE");
-          it.printf(220, 75, id(icon_font_80), light_blue, "\U000F0FCE");
-          it.printf(20, 155, id(icon_font_80), light_blue,"\U000F0FCE");
-          it.printf(120, 155, id(icon_font_80), light_blue,"\U000F0FCE");
-          it.printf(220, 155, id(icon_font_80), light_blue, "\U000F0FCE");
 
+          it.printf(106, 103, id(roboto_18), id(background_mode_set) ? black : white, "WakeWord Location");
+          if(id(wake_word_engine_location).state == "In Home Assistant") {
+            it.printf(106, 123, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Home Assistant");
+          } 
+          else {
+            it.printf(106, 123, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Local");
+          }
 
-      - id: loading_page ### loading page #####
+          it.printf(106, 147, id(roboto_18), id(background_mode_set) ? black : white, "Screensaver Enable");
+          if(id(s_saver).state == true) {
+            it.printf(106, 167, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Enabled");
+          } else {
+            it.printf(106, 167, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Disabled");
+          }
+
+          it.printf(106, 191, id(roboto_18), id(background_mode_set) ? black : white, "Background Mode");
+          if(id(background_mode).state == "Light") {
+            it.printf(106, 211, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Light");
+          } 
+          else {
+            it.printf(106, 211, id(roboto_14), id(background_mode_set) ? secondary_text_color_light : secondary_text_color_dark, "Dark");
+          }
+
+          it.filled_circle(79, 75, 17, blue);
+          it.printf(65, 60, id(icon_font_30), white, "\U000F05A9");
+
+          it.filled_circle(79, 120, 17, green);
+          it.printf(65, 105, id(icon_font_30), white, "\U000F12C4");
+
+          it.filled_circle(79, 165, 17, orange);
+          it.printf(65, 150, id(icon_font_30), white, "\U000F0150");
+
+          it.filled_circle(79, 210, 17, red);
+          it.printf(65, 195, id(icon_font_30), white, "\U000F050E");
+
+#### Entity Page ####
+## Page for controlling entities. ##
+      - id: entities_page
+        lambda: |-
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F0185");              //assist
+
+          it.filled_rectangle(2, 44, 36, 36, id(background_mode_set) ? secondary_light : secondary_dark);
+          it.printf(5, 47, id(icon_font_30), selected_icon, "\U000F06E8" );                                                       //light(selected-ver)
+          it.printf(5, 82, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0FCE");                   //scenes
+          it.printf(5, 117, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F075A");                  //audio
+
+          it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
+
+          bool drawCard1 = false;
+          bool drawCard2 = false;
+
+          //
+          //Draw Lovelace Cards
+          switch(id(entity_page)) {
+          case 1:
+            if (id(entity1_state).state != "") {
+              drawCard1 = true;
+            }
+
+            if (id(entity2_state).state != "") {
+              drawCard2 = true;
+            }
+            break;
+          case 2:
+            if (id(entity3_state).state != "") {
+              drawCard1 = true;
+            }
+
+            if (id(entity4_state).state != "") {
+              drawCard2 = true;
+            }
+            break;
+          case 3:
+            if (id(entity5_state).state != "") {
+              drawCard1 = true;
+            }
+
+            if (id(entity6_state).state != "") {
+              drawCard2 = true;
+            }
+            break;
+          default:
+            //do nothing
+            break;
+          }
+
+          if (drawCard1 == true) {
+            //
+            //Position 1 - Lovelace Card (Standard)
+            it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+            it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+            it.filled_circle(60, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(295, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-right
+
+            it.filled_rectangle(60, 48, 235, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+            it.filled_circle(294, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+            it.filled_circle(61, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(294, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+            it.filled_rectangle(61, 49, 234, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(56, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(295, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+          }
+
+          if (drawCard2 == true) {
+            //
+            //Position 2 - Lovelace Card (Standard)
+            it.filled_circle(60, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-left
+            it.filled_circle(295, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //top-right
+            it.filled_circle(60, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(295, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-right
+
+            it.filled_rectangle(60, 126, 235, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-left
+            it.filled_circle(294, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                           //top-right
+            it.filled_circle(61, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(294, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+            it.filled_rectangle(61, 127, 234, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(56, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(295, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+          }
+
+          //
+          //Draw Entity info
+          switch(id(entity_page)) {
+          case 1:
+            //
+            //Page Controls
+            it.line(46, 39, 75, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+            if (drawCard1 == true) {
+              //
+              //Entity 1
+              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity1_name).state.c_str());
+              it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity1_state).state.c_str());
+            }
+
+            if (drawCard2 == true) {
+              //Entity 2
+              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity2_name).state.c_str());
+              it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity2_state).state.c_str());
+            }
+
+            break;
+          case 2:
+            //
+            //Page Controls
+            it.line(81, 39, 110, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+            if (drawCard1 == true) {
+              //
+              //Entity 3
+              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity3_name).state.c_str());
+              it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity3_state).state.c_str());
+            }
+
+            if (drawCard2 == true) {
+              //Entity 4
+              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity4_name).state.c_str());
+              it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity4_state).state.c_str());
+            }
+
+            break;
+          case 3:
+            //
+            //Page Controls
+            it.line(116, 39, 145, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03AA");
+
+            if (drawCard1 == true) {
+              //
+              //Entity 5
+              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity5_name).state.c_str());
+              it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity5_state).state.c_str());
+            }
+
+            if (drawCard2 == true) {
+              //Entity 6
+              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity6_name).state.c_str());
+              it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity6_state).state.c_str());
+            }
+
+            break;
+          default:
+            break;
+          }
+
+#### Media Page ####
+## Page for controlling media playback. ##
+      - id: media_page
+        lambda: |-  
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark,"\U000F0185");               //assist
+
+          it.printf(5, 47, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark,"\U000F06E8" );                   //light
+          it.printf(5, 82, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark,"\U000F0FCE");                    //scenes
+          it.filled_rectangle(2, 114, 36, 36, id(background_mode_set) ? secondary_light : secondary_dark);
+          it.printf(5, 117, id(icon_font_30), selected_icon,"\U000F075A");                                                        //audio(selected-ver)
+
+          it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
+
+          bool drawCard = true;
+
+          //determines which version of card to draw based on player state
+          switch(id(media_player_page)) {
+            case 1:
+              if (id(isExternal) == true && (id(external_player_state).state == "off" || id(external_player_state).state == "unavailable" || id(external_player_state).state == "")) {
+                drawCard = false;
+              }
+
+              break;
+            case 2:
+              if (id(media_player1_state).state == "off" || id(media_player1_state).state == "unavailable" || id(media_player1_state).state == "") {
+                drawCard = false;
+              }
+
+              break;
+            case 3:
+              if (id(media_player2_state).state == "off" || id(media_player2_state).state == "unavailable" || id(media_player2_state).state == "") {
+                drawCard = false;
+              }
+
+              break;
+            default:
+              drawCard = false;
+              break;
+          }
+
+          if (drawCard == true) {
+            //
+            //Position 1 - Lovelace Card (Media On-Ver.)
+            it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);     //top-left
+            it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);    //top-right
+            it.filled_circle(60, 165, 5, id(background_mode_set) ? divider_light : divider_dark);    //bottom-left
+            it.filled_circle(295, 165, 5, id(background_mode_set) ? divider_light : divider_dark);   //bottom-right
+
+            it.filled_rectangle(60, 48, 235, 123, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 53, 5, 112, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 53, 5, 112, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 54, 5, blue);     //top-left
+            it.filled_circle(294, 54, 5, blue);    //top-right
+            it.filled_circle(61, 164, 5, blue);    //bottom-left
+            it.filled_circle(294, 164, 5, blue);   //bottom-right
+
+            it.filled_rectangle(61, 49, 234, 121, blue);
+            it.filled_rectangle(56, 54, 5, 110, blue);
+            it.filled_rectangle(295, 54, 5, 110, blue);
+
+            //
+            //Media Controls
+            it.printf(60, 127, id(icon_font_30), white, "\U000F0425");  //power-toggle
+            it.printf(92, 127, id(icon_font_30), white, "\U000F04AE");  //previous
+            it.printf(124, 127, id(icon_font_30), white, "\U000F040E"); //play-pause
+            it.printf(156, 127, id(icon_font_30), white, "\U000F04AD"); //skip
+            it.printf(233, 127, id(icon_font_30), white, "\U000F075E"); //volume down
+            it.printf(265, 127, id(icon_font_30), white, "\U000F075D"); //volume down
+
+            //
+            //Track Status Bar
+            it.filled_rectangle(65, 159, 225, 3, icons_light);
+          }
+          else {
+            //
+            //Position 1 - Lovelace Card (Media Off-Ver.)
+            it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);     //top-left
+            it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);    //top-right
+            it.filled_circle(60, 115, 5, id(background_mode_set) ? divider_light : divider_dark);    //bottom-left
+            it.filled_circle(295, 115, 5, id(background_mode_set) ? divider_light : divider_dark);   //bottom-right
+
+            it.filled_rectangle(60, 48, 235, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 54, 5, gray);     //top-left
+            it.filled_circle(294, 54, 5, gray);    //top-right
+            it.filled_circle(61, 114, 5, gray);    //bottom-left
+            it.filled_circle(294, 114, 5, gray);   //bottom-right
+
+            it.filled_rectangle(61, 49, 234, 72, gray);
+            it.filled_rectangle(56, 54, 5, 61, gray);
+            it.filled_rectangle(295, 54, 5, 61, gray);
+
+            //
+            //Power Toggle Only
+            it.printf(60, 88, id(icon_font_30), white, "\U000F0425");  //power-toggle
+          }
+
+          switch (id(media_player_page)) {
+          case 1:
+            //
+            //Page Controls
+            it.line(46, 39, 75, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+            //
+            //Local player is always on, so state check should only occur for external
+
+            if (id(isExternal) == false) {
+              //
+              //Media Player Details
+              it.printf(90, 59, id(roboto_12), white, id(local_player_name).state.c_str());
+              it.printf(65, 80, id(roboto_18), white, id(local_player_title).state.c_str());
+              it.printf(65, 102, id(roboto_12), white, id(local_player_artist).state.c_str());
+              it.filled_rectangle(65, 159, id(local_player_progress), 3, white);
+            }
+            else {
+              if (drawCard == true) {
+                //
+                //Media Details
+                it.printf(65, 80, id(roboto_18), white, id(external_player_title).state.c_str());
+                it.printf(65, 102, id(roboto_12), white, id(external_player_artist).state.c_str());
+                it.filled_rectangle(65, 159, id(local_player_progress), 3, white);
+              }
+
+              //Media Player Name
+              it.printf(90, 59, id(roboto_12), white, id(external_player_name).state.c_str());
+            }
+
+            break;
+          case 2:
+            //
+            //Page Controls
+            it.line(81, 39, 110, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+            if (drawCard == true) {
+              //
+              //Media Player Details
+              it.printf(65, 80, id(roboto_18), white, id(media_player1_title).state.c_str());
+              it.printf(65, 102, id(roboto_12), white, id(media_player1_artist).state.c_str());
+              it.filled_rectangle(65, 159, id(media_player1_progress), 3, white);
+            }
+
+            //
+            //Media Player Name
+            it.printf(90, 59, id(roboto_12), white, id(media_player1_name).state.c_str());
+
+            break;
+          case 3:
+            //
+            //Page Controls
+            it.line(116, 39, 145, 39, id(background_mode_set) ? white : icons_secondary_dark);
+            it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+            it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+            it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03AA");
+
+            if (drawCard == true) {
+              //
+              //Media Player Details
+              it.printf(65, 80, id(roboto_18), white, id(media_player2_title).state.c_str());
+              it.printf(65, 102, id(roboto_12), white, id(media_player2_artist).state.c_str());
+              it.filled_rectangle(65, 159, id(media_player2_progress), 3, white);
+            }
+
+            //
+            //Media Player Name
+            it.printf(90, 59, id(roboto_12), white, id(media_player2_name).state.c_str());
+
+            break;
+          default:
+            //do nothing
+            break;
+          }
+
+          it.printf(65, 55, id(icon_font_20), white, "\U000F04C3"); //Top-Left Speaker Icon
+
+#### Scenes Page ####
+## Page for controlling scenes ##
+      - id: scenes_page
+        lambda: |-
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F0185");              //assist
+
+          it.printf(5, 47, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F06E8" );                  //light
+          it.filled_rectangle(2, 79, 36, 36, id(background_mode_set) ? secondary_light : secondary_dark);
+          it.printf(5, 82, id(icon_font_30), selected_icon, "\U000F0FCE");                                                        //scenes(selected-ver)
+          it.printf(5, 117, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F075A");                  //audio
+
+          it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
+
+          if (id(scene1_name).state != "") {
+            //
+            //Position 1 - Lovelace Card (Small)
+            it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+            it.filled_circle(168, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+            it.filled_circle(60, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(168, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-right
+
+            it.filled_rectangle(60, 48, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(169, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+            it.filled_circle(167, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+            it.filled_circle(61, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(167, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+            it.filled_rectangle(61, 49, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(56, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(168, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+            //
+            //Scene1 Entity
+            it.filled_circle(114, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
+            it.printf(99, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
+            it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, id(scene1_name).state.c_str());
+          }
+
+          if (id(scene2_name).state != "") {
+            //
+            //Position 2 - Lovelace Card (Small)
+            it.filled_circle(187, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+            it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-right
+            it.filled_circle(187, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(295, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-right
+
+            it.filled_rectangle(187, 48, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(182, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 53, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(188, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+            it.filled_circle(294, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-right
+            it.filled_circle(188, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(294, 114, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-right
+
+            it.filled_rectangle(188, 49, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(183, 54, 5, 62, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(295, 54, 5, 62, id(background_mode_set) ? white : sidebar_dark);
+
+            //
+            //Scene2 Entity
+            it.filled_circle(241, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
+            it.printf(226, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
+            it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, id(scene2_name).state.c_str());
+          }
+
+#### Assist Pages ####
+## These pages load images for using Assist. If you want to change these, images are referenced from above ##
+      - id: loading_page
         lambda: |-
           it.fill(Color::BLACK);
           it.image((it.get_width() / 2), (it.get_height() / 2), id(loading_img), ImageAlign::CENTER);
-
       - id: listening_page
         lambda: |-
           it.fill(Color::BLACK);
           it.image((it.get_width() / 2), (it.get_height() / 2), id(listening_img), ImageAlign::CENTER);
-      
       - id: thinking_page
         lambda: |-
           it.fill(Color::BLACK);
@@ -1731,7 +2640,7 @@ display:
           if (id(display_conversation).state) {
             it.filled_rectangle(0 , 0 , 320 , 30 , Color::WHITE );
             it.printf(10, 10, id(my_font16), Color::BLACK, "%s", id(text_request).state.c_str());
-          }          
+          } 
       - id: replying_page
         lambda: |-
           it.fill(Color::BLACK);
@@ -1746,7 +2655,20 @@ display:
         lambda: |-
           it.fill(Color::BLACK);
           it.image((it.get_width() / 2), (it.get_height() / 2), id(error_img), ImageAlign::CENTER);
-          
+      - id: muted_page
+        lambda: |-
+          it.fill(Color::BLACK);
+          it.printf(160, 120, id(my_font4), yellow, TextAlign::CENTER, "Mic & Speaker - Muted");
+
+#### Timer Pages ####
+## For use with timers. Show remaining time, or when a timer completes ##
+      - id: time_remaining_page
+        lambda: |-
+          it.fill(id(black));
+          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Active Timers");
+          it.printf(160, 70, id(icon_font_80), light_blue, TextAlign::CENTER, "\U000F0150"); 
+          it.printf(160, 155, id(my_font6), light_blue, TextAlign::CENTER, "%s", id(time_remaining_0).state.c_str());
+
       - id: timer_finished_page
         lambda: |-
           it.fill(id(black));
@@ -1754,199 +2676,39 @@ display:
           it.printf(160, 120, id(icon_font_180), light_blue, TextAlign::CENTER, "\U000F009E");
           it.printf(160, 215, id(my_font5), light_blue, TextAlign::CENTER, "tap screen to dismiss");
 
-      - id: muted_page
-        lambda: |-
-          it.fill(Color::BLACK);
-          it.printf(160, 120, id(my_font4), yellow, TextAlign::CENTER, "Mic & Speaker - Muted");
-
-      - id: saver_page ##### screen saver display page #####
+#### Screensaver Page ####
+## When enabled, this screen will display after a set timeout. Displays time and date, and a timer if active ##
+      - id: saver_page
         lambda: |-
           it.fill(id(black));
            
           const char *days[] {"${sunday}","${monday}","${tuesday}","${wednesday}","${thursday}","${friday}","${saturday}"};
           const char *months[] {"${jan}","${feb}","${mar}","${apr}","${may}","${jun}","${jul}","${aug}","${sept}","${oct}","${nov}","${dec}"};
+
           it.printf(160, 28, id(my_font5), light_blue, TextAlign::CENTER, "%s %d %s", days[id(ha_time).now().day_of_week - 1], id(ha_time).now().day_of_month, months[id(ha_time).now().month - 1]);
+          
           if(id(time_display_format).state == "24 Hr") {
             it.strftime(160, 88, id(my_font82), TextAlign::CENTER, "%H:%M", id(ha_time).now());
           } else {
             it.strftime(160, 88, id(my_font2), TextAlign::CENTER, "%l:%M%p", id(ha_time).now());
           }
-         
-      - id: ota_page ##### firmware uploading page #####
+
+          if (id(time_remaining_0).state != "0:00:00") {
+            it.printf(3, 177, id(icon_font_60), light_blue, "\U000F0150");
+            it.printf(66, 192, id(roboto_30), light_blue, "%s", id(time_remaining_0).state.c_str());
+          }
+
+#### OTA Page ####
+## Shows when an update occurs, vis ESPHome or other update method ##
+      - id: ota_page
         lambda: |-
           it.fill(Color::BLACK);
           it.printf(160, 60, id(icon_font_80), red, TextAlign::CENTER, "\U000F08D6");  
           it.printf((it.get_width() / 2), (it.get_height() / 2), id(my_font3), red, TextAlign::CENTER, "FIRMWARE UPDATING");
           it.printf(160,190, id(my_font3), red, TextAlign::CENTER, "won't be long....");
-          
-      - id: settings_page ##### settings parent page #####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }          
-          it.printf(160, 65, id(my_font5), light_blue, TextAlign::CENTER, "settings");         
-          it.printf(20, 80, id(icon_font_55), light_blue,"\U000F036F");
-          it.printf(140, 80, id(icon_font_55), light_blue,"\U000F0502");
-          it.printf(255, 80, id(icon_font_55), light_blue, "\U000F1C6F");  
-          it.printf(15, 210, id(my_font5), light_blue,"Device");
-          it.printf(245, 130, id(my_font5), light_blue, "Info");           
-          it.printf(20, 160, id(icon_font_55), light_blue,"\U000F08D6");        
-          it.printf(255, 160, id(icon_font_55), light_blue, "\U000F05CB");
-          it.printf(15, 130, id(my_font5), light_blue,"Voice");
-          it.printf(135, 130, id(my_font5), light_blue,"Saver");
-          it.printf(245, 210, id(my_font5), light_blue, "Test"); 
-          it.image((it.get_width() / 2), 195, id(logo_img), ImageAlign::CENTER);
-          
-      - id: device_set_page ##### Device settings page #####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }          
-          it.printf(15, 75, id(my_font5), light_blue, "Ext media player"); 
-          if(id(output_audio).state) {
-                 it.printf(255, 60, id(icon_font_60), lime, "\U000F0521");
-          } else {   
-                 it.printf(255, 60, id(icon_font_60), blue_drk, "\U000F0A19");
-          }
-          it.printf(5, 190, id(icon_font_55), light_blue, "\U000F0B28");
-          it.printf(15, 135, id(my_font5), light_blue, "Brightness");          
-          it.printf(238, 148, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_default_brightness).state);  
-          it.printf(160, 125, id(icon_font_55), lime, TextAlign::LEFT, "\U000F0B2C");    
-          it.printf(315, 125, id(icon_font_55), lime, TextAlign::RIGHT, "\U000F0B26");           
-          it.rectangle(215 , 125 , 46 , 40 , light_blue);
-          it.printf(65, 180, id(my_font5), light_blue, "Time Format:");
-          it.printf(210, 180, id(my_font5), lime, "%s", id(time_display_format).state.c_str());
 
-      - id: timeout_settings_page ##### Timeout Settings page #####
-        lambda: |-
-          it.fill(id(black));
-          //it.printf(160, 50, id(icon_font_55), light_blue, TextAlign::CENTER, "\U000F0150"); 
-          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Screen Settings");  
-          it.printf(160, 60, id(my_font5), light_blue, TextAlign::CENTER, "Screen Saver"); 
-          it.printf(50, 80, id(my_font), light_blue, "Delay secs");
-          it.printf(185, 80, id(my_font), light_blue, "Dim Brightness");
-          it.printf(105, 100, id(icon_font_55), lime, TextAlign::LEFT, "\U000F0B2C");    
-          it.printf(65, 100, id(icon_font_55), lime, TextAlign::RIGHT, "\U000F0B26");          
-          it.rectangle(65 , 105 , 40 , 40 , lime);
-          it.printf(85, 125, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_delay).state);
-          it.printf(20, 160, id(my_font), light_blue, "Screen off delay"); 
-          it.printf(105, 180, id(icon_font_55), lime, TextAlign::LEFT, "\U000F0B2C");    
-          it.printf(65, 180, id(icon_font_55), lime, TextAlign::RIGHT, "\U000F0B26");          
-          it.rectangle(65 , 180 , 40 , 40 , lime);
-          it.printf(85, 200, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_blank_delay).state);
-          it.printf(255, 100, id(icon_font_55), pink, TextAlign::LEFT, "\U000F0B2C");    
-          it.printf(215, 100, id(icon_font_55), pink, TextAlign::RIGHT, "\U000F0B26");          
-          it.rectangle(215 , 105 , 40 , 40 , pink);
-          it.printf(235, 125, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_brightness).state);
-
-      - id: time_remaining_page ##### timer countdown page #####
-        lambda: |-
-          it.fill(id(black));
-          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Active Timers");
-          it.printf(160, 70, id(icon_font_80), light_blue, TextAlign::CENTER, "\U000F0150"); 
-          it.printf(160, 155, id(my_font6), light_blue, TextAlign::CENTER, "%s", id(time_remaining_0).state.c_str()); 
-          
-      - id: wifi_page ##### wifi info page #####
-        lambda: |-
-          it.fill(id(black));
-          if(id(api_connection) == true) {
-                  it.printf(15, 5, id(icon_font_55), blue, "\U000F07D0");      
-          } else {
-                  it.printf(15, 5, id(icon_font_55), red, "\U000F087B");
-          }
-          if(id(wifi_connection) == true) {
-                  it.printf(80, 5, id(icon_font_55), lime, "\U000F16BD");      
-          } else {
-                  it.printf(80, 5, id(icon_font_55), red, "\U000F16BC");
-          }
-          if(id(time_remaining_0).state == "0:00:00"){
-          it.printf(135, 5, id(icon_font_55), red, "\U000F0150");
-          } else {
-          it.printf(135, 5, id(icon_font_55), lime, "\U000F0150");
-          }
-          if(id(mute_switch).state) {
-                 it.printf(190, 5, id(icon_font_55), red, "\U000F036D"); 
-          } else {
-                 it.printf(190, 5, id(icon_font_55), lime, "\U000F036C"); 
-          }
-          if(id(alarm_status).state == "disarmed") {
-          it.printf(250, 5, id(icon_font_55), red, "\U000F099E"); 
-          } else if(id(alarm_status).state == "arming") {
-          it.printf(250, 5, id(icon_font_55), amber, "\U000F0565"); 
-          } else if(id(alarm_status).state == "armed_home") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F068A");
-          } else if(id(alarm_status).state == "armed_away") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F099D");     
-          } else if(id(alarm_status).state == "armed_night") {
-          it.printf(250, 5, id(icon_font_55), green, "\U000F1828");
-          }  
-          it.printf(160, 75, id(my_font5), light_blue, TextAlign::CENTER, "ssid");
-          it.printf(160, 95, id(my_font5), yellow, TextAlign::CENTER, "%s", id(connected_ssid).state.c_str());
-          it.printf(160, 125, id(my_font5), light_blue, TextAlign::CENTER, "bssid");
-          it.printf(160, 145, id(my_font5), yellow, TextAlign::CENTER, "%s", id(connected_bssid).state.c_str());
-          it.printf(160, 175, id(my_font5), light_blue, TextAlign::CENTER, "Device MAC");
-          it.printf(160, 195, id(my_font5), yellow, TextAlign::CENTER, "%s", id(device_mac).state.c_str());
-          it.printf(38, 210, id(my_font5), light_blue, TextAlign::LEFT, "Signal Strength");
-          it.printf(283, 210, id(my_font5), yellow, TextAlign::RIGHT, "%4.f%%", id(wifi_percent).state);
-
+#### Alarm Pages ####
+## Part of recent update to include alarm functionality (not yet functioning fully) ##
       - id: alarm_page   #### alarm page #####
         lambda: |-
           if(id(alarm_status).state == "disarmed") {
@@ -2097,7 +2859,93 @@ display:
           } else if(id(alarm_status).state == "armed_night") {
           it.printf(255, 30, id(icon_font_55), green, TextAlign::CENTER, "\U000F1828");
           it.printf(255, 70, id(my_font3), green, TextAlign::CENTER, "Armed");
-          }            
+          }
+
+#### Additional Settings Pages ####
+## These pages go beyond the scope of the standard settings page. ##
+## Screen Timeout Settings (Not currently programmed, use Home Assistant to change values) ##
+      - id: timeout_settings_page
+        lambda: |-
+          it.fill(id(black));
+          //it.printf(160, 50, id(icon_font_55), light_blue, TextAlign::CENTER, "\U000F0150"); 
+          it.printf(160, 20, id(my_font5), light_blue, TextAlign::CENTER, "Screen Settings");  
+          it.printf(160, 60, id(my_font5), light_blue, TextAlign::CENTER, "Screen Saver"); 
+          it.printf(50, 80, id(my_font), light_blue, "Delay secs");
+          it.printf(185, 80, id(my_font), light_blue, "Dim Brightness");
+          it.printf(105, 100, id(icon_font_55), lime, TextAlign::LEFT, "\U000F0B2C");    
+          it.printf(65, 100, id(icon_font_55), lime, TextAlign::RIGHT, "\U000F0B26");          
+          it.rectangle(65 , 105 , 40 , 40 , lime);
+          it.printf(85, 125, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_delay).state);
+          it.printf(20, 160, id(my_font), light_blue, "Screen off delay"); 
+          it.printf(105, 180, id(icon_font_55), lime, TextAlign::LEFT, "\U000F0B2C");    
+          it.printf(65, 180, id(icon_font_55), lime, TextAlign::RIGHT, "\U000F0B26");          
+          it.rectangle(65 , 180 , 40 , 40 , lime);
+          it.printf(85, 200, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_blank_delay).state);
+          it.printf(255, 100, id(icon_font_55), pink, TextAlign::LEFT, "\U000F0B2C");    
+          it.printf(215, 100, id(icon_font_55), pink, TextAlign::RIGHT, "\U000F0B26");          
+          it.rectangle(215 , 105 , 40 , 40 , pink);
+          it.printf(235, 125, id(my_font5), light_blue, TextAlign::CENTER, "%.f", id(s_saver_brightness).state);
+
+## Wifi Diagnostics ##
+      - id: wifi_page
+        lambda: |-
+          it.fill(id(background_mode_set) ? id(background_light) : id(background_dark));                                          //background-color
+
+          it.filled_rectangle(0, 0, 320, 40, id(background_mode_set) ? primary_light : primary_dark);
+          it.filled_rectangle(0, 0, 40, 240, id(background_mode_set) ? white : sidebar_dark);
+
+          it.line(0, 40, 40, 40, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(40, 0, 40, 240, id(background_mode_set) ? divider_light : divider_dark);
+          it.line(0, 199, 40, 199, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.printf(5, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F035C");                    //menu
+          it.printf(285, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F0185");              //assist
+
+          it.printf(5, 47, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F06E8" );                  //light
+          it.printf(5, 82, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0FCE");                   //scenes
+          it.printf(5, 117, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F075A");                  //audio
+
+          it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
+
+          //
+          //Lovelace Card (Settings-Ver)
+          it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-left
+          it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //top-right
+          it.filled_circle(60, 225, 5, id(background_mode_set) ? divider_light : divider_dark);                                   //bottom-left
+          it.filled_circle(295, 225, 5, id(background_mode_set) ? divider_light : divider_dark);                                  //bottom-right
+
+          it.filled_rectangle(60, 48, 235, 183, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(55, 53, 5, 172, id(background_mode_set) ? divider_light : divider_dark);
+          it.filled_rectangle(296, 53, 5, 172, id(background_mode_set) ? divider_light : divider_dark);
+
+          it.filled_circle(61, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+          it.filled_circle(294, 54, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+          it.filled_circle(61, 224, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+          it.filled_circle(294, 224, 5, id(background_mode_set) ? white : sidebar_dark);                                           //bottom-right
+
+          it.filled_rectangle(61, 49, 234, 181, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(56, 54, 5, 171, id(background_mode_set) ? white : sidebar_dark);
+          it.filled_rectangle(295, 54, 5, 171, id(background_mode_set) ? white : sidebar_dark);
+
+          //
+          //Wifi Settings Content
+          it.printf(60, 63, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "Wifi Diagnostics");
+
+          it.printf(60, 95, id(roboto_14), id(background_mode_set) ? black : primary_text_color_dark, "This is additional information related");
+          it.printf(60, 110, id(roboto_14), id(background_mode_set) ? black : primary_text_color_dark, "to this device's wifi connection.");
+
+          it.printf(60, 136, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, "ssid");
+          it.printf(295, 136, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::RIGHT, "%s", id(connected_ssid).state.c_str());
+
+          it.printf(60, 152, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, "bssid");
+          it.printf(295, 152, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::RIGHT, "%s", id(connected_bssid).state.c_str());
+
+          it.printf(60, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, "Device MAC");
+          it.printf(295, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::RIGHT, "%s", id(device_mac).state.c_str());
+          
+          it.printf(60, 184, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, "Signal Strength");
+          it.printf(295, 184, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::RIGHT, "%4.f%%", id(wifi_percent).state);
+
 i2c:
   - id: bus_a
     sda: GPIO08
@@ -2115,7 +2963,6 @@ i2c:
     frequency: 50kHz
     id: bus_b
 
-
 touchscreen:
   - platform: gt911
     i2c_id: bus_a
@@ -2127,9 +2974,11 @@ touchscreen:
       - lambda: id(led).turn_on().set_brightness(id(s_default_brightness).state /100).perform();
     on_release:
       - script.execute: saver_enabled 
-   
+    
 binary_sensor:
-###### top left hand physical button #######
+
+#### Top-Left Button #####
+## Change this to use the top-left button in different ways. Currently toggles the display ##
   - platform: gpio
     id: top_left_button
     pin:
@@ -2154,8 +3003,10 @@ binary_sensor:
                 - script.execute: saver_enabled
                 - display.page.show: saver_page
                 - component.update: s3_box_lcd
-            
-# #######     red circle home button   #####################
+
+
+#### Circle Button ####
+## Change this to use the circle button in different ways. Currently enables sleep mode on the main page ##
   - platform: gt911
     id: home_button
     index: 0
@@ -2169,307 +3020,59 @@ binary_sensor:
           - lambda: id(led).turn_on().set_brightness(id(s_default_brightness).state /100).perform();
           - display.page.show: idle_page
           - component.update: s3_box_lcd
+         
 
-##### satus bar buttons #####             
+#### Menu Buttons ####
+## These serve as global buttons on each page to navigate the device. ##
   - platform: touchscreen
-    pages:
-      - idle_page
-      - info_page
-      - lights_page
-      - template_page
-      - media_page
-      - ext_media_page
-      - scenes_page
-      - settings_page      
-    id: status_bar_1
-    x_min: 5
-    x_max: 60
-    y_min: 0
-    y_max: 55
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-         # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    pages:
-      - idle_page
-      - info_page
-      - lights_page
-      - template_page
-      - media_page
-      - ext_media_page
-      - scenes_page
-      - settings_page  
-    id: status_bar_2
+    name: settings_button
     internal: true
-    x_min: 65
-    x_max: 125
-    y_min: 0
-    y_max: 55
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: wifi_page
-        - component.update: s3_box_lcd
-
-
-  - platform: touchscreen
-    pages:
-      - idle_page
-      - info_page
-      - lights_page
-      - template_page
-      - media_page
-      - ext_media_page
-      - scenes_page
-      - settings_page
-    id: status_bar_3
-    internal: true
-    x_min: 130
-    x_max: 185
-    y_min: 0
-    y_max: 55
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        if:
-          condition:
-            - switch.is_on: timer_ringing
-          then:
-            - display.page.show: timer_finished_page
-            - component.update: s3_box_lcd
-          else:
-            - display.page.show: time_remaining_page
-            - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    pages:
-      - idle_page
-      - info_page
-      - lights_page
-      - template_page
-      - media_page
-      - ext_media_page
-      - scenes_page
-      - settings_page
-    id: status_bar_4
-    internal: true
-    x_min: 190
-    x_max: 245
-    y_min: 0
-    y_max: 55
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - switch.toggle: mute_switch
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    pages:
-      - idle_page
-      - info_page
-      - lights_page
-      - template_page
-      - media_page
-      - ext_media_page
-      - scenes_page
-      - settings_page
-    name: status_bar_5
-    internal: true
-    x_min: 250
-    x_max: 305
-    y_min: 0
-    y_max: 55
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: alarm_page
-        - component.update: s3_box_lcd
-
-##### settings page ####
-  - platform: touchscreen
-    page_id: settings_page
-    id: voice_set
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 100
-    y_max: 165
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: ww_set_page
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: settings_page
-    id: ss_set
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 100
-    y_max: 165
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: ss_set_page
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: settings_page
-    id: info_set
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 100
-    y_max: 165
+    x_min: 0
+    x_max: 40
+    y_min: 200
+    y_max: 240
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
         - display.page.show: info_page
         - component.update: s3_box_lcd
-        
+
   - platform: touchscreen
-    page_id: settings_page
-    id: device_set
+    id: entities_button
     internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
+    x_min: 0
+    x_max: 40
+    y_min: 43
+    y_max: 82
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
-        - display.page.show: device_set_page
+        - display.page.show: entities_page
         - component.update: s3_box_lcd
 
   - platform: touchscreen
-    page_id: settings_page
-    id: voice_test 
+    id: media_player_button
     internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 175
-    y_max: 240
-    on_press:
-      then:
-        - switch.turn_on: mute_switch
-        - lambda: id(va).set_use_wake_word(false);
-        - delay: 100ms
-        - voice_assistant.start 
-        - wait_until:
-            not:
-              - voice_assistant.is_running
-        - voice_assistant.stop
-    on_release:
-      then:
-        - switch.turn_off: mute_switch    
-        - component.update: s3_box_lcd
-        
-  - platform: touchscreen
-    pages:
-      - device_set_page
-    id: back_button
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
+    x_min: 0
+    x_max: 40
+    y_min: 112
+    y_max: 152
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
-        - display.page.show: settings_page
-        - component.update: s3_box_lcd
-#########################################
-##### idle / home page ####
-  - platform: touchscreen
-    page_id: idle_page
-    id: control_1
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: climate_page
+        - display.page.show: media_page
         - component.update: s3_box_lcd
 
   - platform: touchscreen
-    page_id: idle_page
-    id: control_2
+    id: scenes_button
     internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: lights_page
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: idle_page
-    id: control_3
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - display.page.show: template_page
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: idle_page
-    id: control_4
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        if:
-          condition:
-            switch.is_off: output_audio
-          then:
-            - display.page.show: media_page
-            - component.update: s3_box_lcd
-          else:
-            - display.page.show: ext_media_page
-            - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: idle_page
-    id: control_5
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 175
-    y_max: 240
+    x_min: 0
+    x_max: 40
+    y_min: 77
+    y_max: 117
     on_click:
       min_length: 10ms
       max_length: 500ms
@@ -2478,570 +3081,832 @@ binary_sensor:
         - component.update: s3_box_lcd
 
   - platform: touchscreen
-    page_id: idle_page
-    id: control_6 
+    id: assist_button 
     internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 175
-    y_max: 240
+    x_min: 280
+    x_max: 320
+    y_min: 0
+    y_max: 40
+    on_press:
+      then:
+        - micro_wake_word.stop
+        - delay: 50ms
+        - lambda: id(va).set_use_wake_word(false);
+        - delay: 50ms
+        - voice_assistant.stop:
+        - delay: 50ms 
+        - voice_assistant.start
+        - display.page.show: listening_page
+        - component.update: s3_box_lcd
+    on_release:
+      - delay: 100ms
+      - if:
+          condition:
+            lambda: return id(wake_word_engine_location).state == "In Home Assistant";
+          then:
+            - voice_assistant.stop: 
+            - lambda: id(va).set_use_wake_word(true);
+            - delay: 10ms
+            - voice_assistant.start_continuous: 
+          else:
+            - voice_assistant.stop: 
+            - delay: 100ms            
+            - micro_wake_word.start         
+
+#### Idle/Main Menu Navigation ####
+## These go to pages shown on the idle page (mostly timer and alarm) ##
+  - platform: touchscreen
+    page_id: idle_page
+    id: alarm_navigate
+    x_min: 183
+    x_max: 300
+    y_min: 126
+    y_max: 198
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
-        - display.page.show: settings_page
-        - component.update: s3_box_lcd   
-            
-#### climate page #####
-  - platform: touchscreen
-    page_id: climate_page
-    id: climate1
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
+        if:
+          condition:
+            - lambda: if(id(alarm_status).state != "") {return true;} else {return false;}
+          then:
+            - display.page.show: alarm_page
+            - component.update: s3_box_lcd
 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
+#### Entity Page Controls ####
+## These enable the top-bar to change Entity pages. Only change if you know what you are doing ##
   - platform: touchscreen
-    page_id: climate_page
-    id: climate2
+    page_id: entities_page
+    id: entity_page_1
     internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd 
-
-  - platform: touchscreen
-    page_id: climate_page
-    id: climate3
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: climate_page
-    id: climate4
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: climate_page
-    id: climate5
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: climate_page
-    id: climate6
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-##### lights page #####  
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights1
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights2
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights3
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights4
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights5
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: lights_page
-    id: lights6
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 175
-    y_max: 240
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-##### media player #####
-  - platform: touchscreen
-    page_id: media_page
-    name: Volume Minus
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
+    x_min: 41
+    x_max: 77
+    y_min: 0
+    y_max: 39
     on_click:
-      min_length: 0ms
+      min_length: 10ms
       max_length: 500ms
       then:
-        - logger.log: "Volume Minus pressed"
-        - lambda: |-
-            if (id(speaker_volume) > 0) {
-              id(speaker_volume) -= 1;
-            }
+        - lambda: id(entity_page) = 1;
         - component.update: s3_box_lcd
-        - script.execute: set_volume
 
   - platform: touchscreen
-    page_id: media_page
-    name: Volume Plus
+    page_id: entities_page
+    id: entity_page_2
     internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
+    x_min: 78
+    x_max: 112
+    y_min: 0
+    y_max: 39
     on_click:
-      min_length: 0ms
+      min_length: 10ms
       max_length: 500ms
       then:
-        - logger.log: "Volume Plus pressed"
-        - lambda: |-
-            if (id(speaker_volume) < 10) {
-              id(speaker_volume) += 1;
-            }
+        - lambda: id(entity_page) = 2;
         - component.update: s3_box_lcd
-        - script.execute: set_volume
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_page_3
+    internal: true
+    x_min: 113
+    x_max: 147
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(entity_page) = 3;
+        - component.update: s3_box_lcd
+
+#### Entity Controls ####
+## These enable touchscreen controls for entities specified. Only change if you know what you are doing ##
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control1
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 48
+    y_max: 120
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 1) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity1_service}
+                  data:
+                    entity_id: ${entity1}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control2
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 126
+    y_max: 198
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 1) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity2_service}
+                  data:
+                    entity_id: ${entity2}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control3
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 48
+    y_max: 120
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 2) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity3_service}
+                  data:
+                    entity_id: ${entity3}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control4
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 126
+    y_max: 198
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 2) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity4_service}
+                  data:
+                    entity_id: ${entity4}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control5
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 48
+    y_max: 120
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 3) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity5_service}
+                  data:
+                    entity_id: ${entity5}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: entities_page
+    id: entity_control6
+    internal: true
+    x_min: 55
+    x_max: 300
+    y_min: 126
+    y_max: 198
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+            - lambda: if(id(entity_page) == 3) {return 1;} else {return 0;}
+            then:
+              - homeassistant.service:
+                  service: ${entity6_service}
+                  data:
+                    entity_id: ${entity6}
+              - display.page.show: entities_page
+              - delay: 3s
+              - component.update: s3_box_lcd
+
+#### Media Page Controls ####
+## These enable the top-bar to change Media pages. Only change if you know what you are doing ##
+  - platform: touchscreen
+    page_id: media_page
+    id: media_page_1
+    internal: true
+    x_min: 41
+    x_max: 77
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(media_player_page) = 1;
+        - component.update: s3_box_lcd
 
   - platform: touchscreen
     page_id: media_page
-    name: Play Pause
+    id: media_page_2
     internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
+    x_min: 78
+    x_max: 112
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(media_player_page) = 2;
+        - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_page_3
+    internal: true
+    x_min: 113
+    x_max: 147
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(media_player_page) = 3;
+        - component.update: s3_box_lcd
+
+#### Media Player Controls ####
+## These enable touchscreen controls for the media player. Only change if you know what you are doing ##
+## Local/External Player ##
+  - platform: touchscreen
+    page_id: media_page
+    id: local_power_toggle
+    x_min: 60
+    x_max: 90
+    y_min: 88
+    y_max: 157
     on_click:
       min_length: 0ms
       max_length: 500ms
       then:
         - if:
             condition:
-              media_player.is_idle:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+            then:
+              - logger.log: "Power Toggle Pressed"
+              - if:
+                  condition:
+                    - switch.is_off: output_audio
+                  then:
+                    - homeassistant.service:
+                        service: media_player.toggle
+                        data:
+                          entity_id: media_player.${local_player}
+                  else:
+                    - if:
+                        condition:
+                          - lambda: if(id(external_player_state).state == "off") {return true;} else {return false;}
+                        then:
+                          - homeassistant.service:
+                              service: media_player.turn_on
+                              data:
+                                entity_id: media_player.${external_player}
+                        else:
+                          - homeassistant.service:
+                              service: media_player.turn_off
+                              data:
+                                entity_id: media_player.${external_player}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: local_previous_track
+    x_min: 92
+    x_max: 122
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+            then:
+              - logger.log: "Previous track pressed"
+              - if:
+                  condition:
+                    - switch.is_off: output_audio
+                  then:
+                    - homeassistant.service:
+                        service: media_player.media_previous_track
+                        data:
+                          entity_id: media_player.${local_player}
+                  else:
+                    - homeassistant.service:
+                        service: media_player.media_previous_track
+                        data:
+                          entity_id: media_player.${external_player}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: local_play_pause
+    x_min: 124
+    x_max: 154
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - media_player.is_idle:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
             then:
               - media_player.play
             else:
               - media_player.stop
         - logger.log: "Play Paused pressed"
-        
+
   - platform: touchscreen
     page_id: media_page
-    name: Mute Media
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 180
-    y_max: 260
+    id: local_next_track
+    x_min: 156
+    x_max: 186
+    y_min: 127
+    y_max: 157
     on_click:
       min_length: 0ms
       max_length: 500ms
       then:
-        - switch.toggle: media_mute
-        - component.update: s3_box_lcd
-#### external media ####        
-  - platform: touchscreen
-    page_id: ext_media_page
-    id: ext_prev_track
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
-    on_click:
-      min_length: 0ms
-      max_length: 500ms
-      then:
-        - homeassistant.service:
-            service: media_player.media_previous_track
-            data:
-              entity_id: media_player.${external_media_player}
-        - component.update: s3_box_lcd
-
-        
-  - platform: touchscreen
-    page_id: ext_media_page
-    id: ext_next_track
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
-    on_click:
-      min_length: 0ms
-      max_length: 500ms
-      then:
-        - homeassistant.service:
-            service: media_player.media_next_track
-            data:
-              entity_id: media_player.${external_media_player}
-        - component.update: s3_box_lcd
-
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+            then:
+              - logger.log: "Next track pressed"
+              - if:
+                  condition:
+                    - switch.is_off: output_audio
+                  then:
+                    - homeassistant.service:
+                        service: media_player.media_next_track
+                        data:
+                          entity_id: media_player.${local_player}
+                  else:
+                    - homeassistant.service:
+                        service: media_player.media_next_track
+                        data:
+                          entity_id: media_player.${external_player}
+              - component.update: s3_box_lcd
 
   - platform: touchscreen
-    page_id: ext_media_page
-    name: Play Pause
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
+    page_id: media_page
+    id: local_volume_down
+    x_min: 233
+    x_max: 263
+    y_min: 127
+    y_max: 157
     on_click:
       min_length: 0ms
       max_length: 500ms
       then:
-        - homeassistant.service:
-            service: media_player.media_pause
-            data:
-              entity_id: media_player.${external_media_player}
-        - component.update: s3_box_lcd
-
-        
-  - platform: touchscreen
-    page_id: ext_media_page
-    name: Mute Media
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 180
-    y_max: 260
-    on_click:
-      min_length: 0ms
-      max_length: 500ms
-      then:
-        - switch.toggle: ext_media_mute
-        - component.update: s3_box_lcd
-        
-  - platform: touchscreen
-    page_id: ext_media_page
-    id: vol_minus
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 180
-    y_max: 260
-    on_click:
-      min_length: 0ms
-      max_length: 500ms
-      then:
-        - homeassistant.service:
-            service: media_player.volume_down
-            data:
-              entity_id: media_player.${external_media_player}
-        - component.update: s3_box_lcd
-        - script.execute: set_volume
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+            then:
+              - logger.log: "Volume Minus pressed"
+              - lambda: |-
+                  if (id(speaker_volume) > 0) {
+                    id(speaker_volume) -= 1;
+                  }
+              - component.update: s3_box_lcd
+              - script.execute: set_volume
 
   - platform: touchscreen
-    page_id: ext_media_page
-    id: vol_plus
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 180
-    y_max: 260
+    page_id: media_page
+    id: local_volume_up
+    x_min: 265
+    x_max: 295
+    y_min: 127
+    y_max: 157
     on_click:
       min_length: 0ms
       max_length: 500ms
       then:
-        - homeassistant.service:
-            service: media_player.volume_up
-            data:
-              entity_id: media_player.${external_media_player}
-        - component.update: s3_box_lcd
-        - script.execute: set_volume
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 1) {return true;} else {return false;}
+            then:
+              - logger.log: "Volume Plus pressed"
+              - lambda: |-
+                  if (id(speaker_volume) < 10) {
+                    id(speaker_volume) += 1;
+                  }
+              - component.update: s3_box_lcd
+              - script.execute: set_volume
 
-##### scenes page ####
+## Media Player1 ##
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_power_toggle
+    x_min: 60
+    x_max: 90
+    y_min: 88
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - if:
+                  condition:
+                    - lambda: if(id(media_player1_state).state == "off") {return true;} else {return false;}
+                  then:
+                    - homeassistant.service:
+                        service: media_player.turn_on
+                        data:
+                          entity_id: media_player.${media_player1}
+                  else:
+                    - homeassistant.service:
+                        service: media_player.turn_off
+                        data:
+                          entity_id: media_player.${media_player1}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_previous_track
+    x_min: 92
+    x_max: 122
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_previous_track
+                  data:
+                    entity_id: media_player.${media_player1}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_play_pause
+    x_min: 124
+    x_max: 154
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_play_pause
+                  data:
+                    entity_id: media_player.${media_player1}
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_next_track
+    x_min: 156
+    x_max: 186
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_next_track
+                  data:
+                    entity_id: media_player.${media_player1}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_volume_down
+    x_min: 233
+    x_max: 263
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.volume_down
+                  data:
+                    entity_id: media_player.${media_player1}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player1_volume_up
+    x_min: 265
+    x_max: 295
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.volume_up
+                  data:
+                    entity_id: media_player.${media_player1}
+              - component.update: s3_box_lcd
+
+## Media Player2 ##
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_power_toggle
+    x_min: 60
+    x_max: 90
+    y_min: 88
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - if:
+                  condition:
+                    - lambda: if(id(media_player2_state).state == "off") {return true;} else {return false;}
+                  then:
+                    - homeassistant.service:
+                        service: media_player.turn_on
+                        data:
+                          entity_id: media_player.${media_player2}
+                  else:
+                    - homeassistant.service:
+                        service: media_player.turn_off
+                        data:
+                          entity_id: media_player.${media_player2}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_previous_track
+    x_min: 92
+    x_max: 122
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_previous_track
+                  data:
+                    entity_id: media_player.${media_player2}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_play_pause
+    x_min: 124
+    x_max: 154
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_play_pause
+                  data:
+                    entity_id: media_player.${media_player2}
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_next_track
+    x_min: 156
+    x_max: 186
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.media_next_track
+                  data:
+                    entity_id: media_player.${media_player2}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_volume_down
+    x_min: 233
+    x_max: 263
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.volume_down
+                  data:
+                    entity_id: media_player.${media_player2}
+              - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: media_page
+    id: media_player2_volume_up
+    x_min: 265
+    x_max: 295
+    y_min: 127
+    y_max: 157
+    on_click:
+      min_length: 0ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if(id(media_player_page) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: media_player.volume_up
+                  data:
+                    entity_id: media_player.${media_player2}
+              - component.update: s3_box_lcd
+
+#### Scene Controls ####
+## These enable touchscreen controls for scenes specified. Only change if you know what you are doing ##
   - platform: touchscreen
     page_id: scenes_page
-    id: scenes1
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 90
-    y_max: 170
-          #### make sure that the following 4 lines are uncommented by removing the prefixed '#' ###
-    # on_click:
-      # min_length: 10ms
-      # max_length: 500ms
-      # then: 
-      #### add your action here - make sure to uncomment the following  line by removing the prefixed '#' and keep these below your action #####      
-        
-        # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: scenes_page
-    id: scenes2
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 90
-    y_max: 170
-    # on_click:
-    #   min_length: 10ms
-    #   max_length: 500ms
-    
-        #### make sure that the following  line are uncommented and sit at the bottom of this block after your action ###
-            
-            # - component.update: s3_box_lcd
-
-
-  - platform: touchscreen
-    page_id: scenes_page
-    id: scenes3
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 90
-    y_max: 170
-    # on_click:
-    #   min_length: 10ms
-    #   max_length: 500ms
-    
-        #### make sure that the following  line are uncommented and sit at the bottom of this block after your action ###
-            
-            # - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: scenes_page
-    id: scenes4
-    internal: true
-    x_min: 5
-    x_max: 105
-    y_min: 175
-    y_max: 240
-    # on_click:
-    #   min_length: 10ms
-    #   max_length: 500ms
-    
-        #### make sure that the following  line are uncommented and sit at the bottom of this block after your action ###
-            
-            # - component.update: s3_box_lcd
-
-
-  - platform: touchscreen
-    page_id: scenes_page
-    id: scenes5
-    internal: true
-    x_min: 110
-    x_max: 210
-    y_min: 175
-    y_max: 240
-    # on_click:
-    #   min_length: 10ms
-    #   max_length: 500ms
-    
-        #### make sure that the following  line are uncommented and sit at the bottom of this block after your action ###
-            
-            # - component.update: s3_box_lcd
-
-
-
-  - platform: touchscreen
-    page_id: scenes_page
-    id: scenes6
-    internal: true
-    x_min: 215
-    x_max: 315
-    y_min: 175
-    y_max: 240
-    # on_click:
-    #   min_length: 10ms
-    #   max_length: 500ms
-    
-        #### make sure that the following  line are uncommented and sit at the bottom of this block after your action ###
-            
-            # - component.update: s3_box_lcd
-            
-##### Screensaver Settings #####            
-  - platform: touchscreen
-    page_id: ss_set_page
-    id: ss_timeout
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 115
-    y_max: 145
+    id: scene1_control
+    x_min: 55
+    x_max: 173
+    y_min: 48
+    y_max: 120
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
-        - display.page.show: timeout_settings_page
+        - homeassistant.service:
+            service: scene.turn_on
+            data:
+              entity_id: scene.${scene1}
+        - display.page.show: scenes_page
         - component.update: s3_box_lcd
- 
+
   - platform: touchscreen
-    page_id: ss_set_page
+    page_id: scenes_page
+    id: scene2_control
+    x_min: 183
+    x_max: 300
+    y_min: 48
+    y_max: 120
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - homeassistant.service:
+            service: scene.turn_on
+            data: 
+              entity_id: scene.${scene2}
+        - display.page.show: scenes_page
+        - component.update: s3_box_lcd
+
+#### Settings Page Controls ####
+## These controls navigate to additional settings such as wifi or wakeword details. Only change if you know what you are doing ##
+  - platform: touchscreen
+    page_id: info_page
+    id: wifi_extras
+    x_min: 55
+    x_max: 300
+    y_min: 55
+    y_max: 99
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - display.page.show: wifi_page
+        - component.update: s3_box_lcd
+
+#### Settings Controls ####
+## These enable touchscreen controls for the info/settings page. Only change if you know what you are doing ##
+  - platform: touchscreen
+    page_id: info_page
     id: ss_toggle
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 150
-    y_max: 175
+    x_min: 55
+    x_max: 300
+    y_min: 145
+    y_max: 185
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
         - switch.toggle: s_saver
         - component.update: s3_box_lcd
-        
+        - script.execute: saver_enabled
+              
   - platform: touchscreen
-    page_id: ss_set_page
-    id: ss_toggle_blank
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 210
-    y_max: 235
+    page_id: info_page
+    id: background_mode_toggle
+    x_min: 55
+    x_max: 300
+    y_min: 190
+    y_max: 230
     on_click:
       min_length: 10ms
       max_length: 500ms
       then:
-        - switch.toggle: s_saver_mode
-        - component.update: s3_box_lcd   
-        
-##### voice settings page #####
+        - select.next: background_mode_opt
+        - component.update: s3_box_lcd
+
   - platform: touchscreen
-    page_id: ww_set_page
+    page_id: info_page
     id: ww_chang_hass
-    internal: true
-    x_min: 10
-    x_max: 315
+    x_min: 55
+    x_max: 300
     y_min: 100
-    y_max: 135
+    y_max: 140
     on_click:
       min_length: 10ms
       max_length: 500ms
@@ -3051,54 +3916,12 @@ binary_sensor:
             operation: Next
             cycle: true   
         - component.update: s3_box_lcd
-       
-  - platform: touchscreen
-    page_id: ww_set_page
-    id: mute_response
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 145
-    y_max: 170
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - switch.toggle: mute_response_switch  
-        - component.update: s3_box_lcd
-       
-  - platform: touchscreen
-    page_id: ww_set_page
-    id: ww_wake_sound
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 180
-    y_max: 205
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - switch.toggle: wake_sound
-        - component.update: s3_box_lcd
-      
-  - platform: touchscreen
-    page_id: ww_set_page
-    id: ww_toggle_conv
-    internal: true
-    x_min: 250
-    x_max: 315
-    y_min: 210
-    y_max: 235
-    on_click:
-        - switch.toggle: display_conversation
-        - component.update: s3_box_lcd
-   
-##### touch to wake screen #####
+
+#### Screensaver & Timer Controls ####
+## These wake the device from sleep mode or when a timer completes ##
   - platform: touchscreen
     page_id: saver_page
     id: ss_wake
-    internal: true
     x_min: 0
     x_max: 320
     y_min: 0
@@ -3109,8 +3932,7 @@ binary_sensor:
       then:
         - display.page.show: idle_page
         - component.update: s3_box_lcd
-     
-##### Timer finished page #####
+
   - platform: touchscreen
     page_id: timer_finished_page
     id: timer_dismiss
@@ -3127,6 +3949,7 @@ binary_sensor:
         - display.page.show: idle_page
         - component.update: s3_box_lcd
 
+#### Additional Settings ####
 ##### Timeout settings buttons #####
   - id: ss_sleep_down
     page_id: timeout_settings_page
@@ -3202,10 +4025,6 @@ binary_sensor:
             call.perform();
         - component.update: s3_box_lcd
         
-        
-        
-        
-        
   - id: ss_bright_down
     page_id: timeout_settings_page
     platform: touchscreen
@@ -3242,76 +4061,9 @@ binary_sensor:
             call.set_value(bright);
             call.perform();
         - component.update: s3_box_lcd
-##### device settings page #####        
-  - id: s_default_bright_down
-    page_id: device_set_page
-    platform: touchscreen
-    internal: true
-    x_min: 280
-    x_max: 320
-    y_min: 125
-    y_max: 165
-    on_press:
-      then:
-        - lambda: |-
-            int default_bright = id(s_default_brightness).state - 5;
-            if (default_bright < 1) {
-              default_bright = 1;
-            }
-            auto call = id(s_default_brightness).make_call();
-            call.set_value(default_bright);
-            call.perform();
-        - component.update: s3_box_lcd
-        
-  - id: s_default_bright_up
-    page_id: device_set_page
-    platform: touchscreen
-    internal: true
-    x_min: 155
-    x_max: 195
-    y_min: 125
-    y_max: 165
-    on_press:
-      then:
-        - lambda: |-
-            int default_bright = id(s_default_brightness).state + 5;
-            auto call = id(s_default_brightness).make_call();
-            call.set_value(default_bright);
-            call.perform();
-        - component.update: s3_box_lcd
 
-  - id: ext_media_toggle
-    page_id: device_set_page
-    platform: touchscreen
-    internal: true
-    x_min: 280
-    x_max: 320
-    y_min: 80
-    y_max: 120
-    on_press:
-      then:
-        - switch.toggle: output_audio
-        - component.update: s3_box_lcd
-
-  - platform: touchscreen
-    page_id: device_set_page
-    id: chang_display_format
-    x_min: 200
-    x_max: 260
-    y_min: 175
-    y_max: 210
-    on_click:
-      min_length: 10ms
-      max_length: 500ms
-      then:
-        - select.operation:
-            id: time_format
-            operation: Next
-            cycle: true   
-        - component.update: s3_box_lcd
-
-          
-##### alarm panel buttons #####
+#### Alarm Controls ####
+## Use to control alarm pages ##
   - platform: touchscreen
     pages:
       - alarm_away_activate_page
@@ -3595,6 +4347,4 @@ binary_sensor:
       max_length: 500ms
       then:
         - display.page.show: alarm_night_activate_page
-        - component.update: s3_box_lcd   
-################## config end ############################
-
+        - component.update: s3_box_lcd  
