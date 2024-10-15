@@ -107,7 +107,7 @@ esphome:
               id: adf_media_player
               volume: 0 
   project:
-    name: "BigBobbas.s3box.HASSFrontEnd"
+    name: "itsRetro.s3boxHASSFrontEnd"
     version: "2024.09.01"
   
 esp32:
@@ -2277,7 +2277,7 @@ display:
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 70, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity1_name).state.c_str());
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity1_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity1_state).state.c_str());
             }
 
@@ -2286,7 +2286,7 @@ display:
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 148, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity2_name).state.c_str());
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity2_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity2_state).state.c_str());
             }
 
@@ -2305,7 +2305,7 @@ display:
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 70, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity3_name).state.c_str());
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity3_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity3_state).state.c_str());
             }
 
@@ -2314,7 +2314,7 @@ display:
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 148, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity4_name).state.c_str());
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity4_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity4_state).state.c_str());
             }
 
@@ -2333,7 +2333,7 @@ display:
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 70, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity5_name).state.c_str());
+              it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity5_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity5_state).state.c_str());
             }
 
@@ -2342,7 +2342,7 @@ display:
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
               it.print(81, 148, id(icon_font_30), white, "\U000F097E");
 
-              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, id(entity6_name).state.c_str());
+              it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity6_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity6_state).state.c_str());
             }
 
@@ -2592,7 +2592,7 @@ display:
             //Scene1 Entity
             it.filled_circle(114, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
             it.printf(99, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
-            it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, id(scene1_name).state.c_str());
+            it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene1_name).state.c_str());
           }
 
           if (id(scene2_name).state != "") {
@@ -2620,7 +2620,7 @@ display:
             //Scene2 Entity
             it.filled_circle(241, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
             it.printf(226, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
-            it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, id(scene2_name).state.c_str());
+            it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene2_name).state.c_str());
           }
 
 #### Assist Pages ####
