@@ -34,16 +34,30 @@ substitutions:
   entity6_service: none.none
 
 #### Media Players ####
-## Substitue names if you want to control additional media players ##
-  local_player: ${friendly_name} ##if you change the entity id in HA, you'll need to change it here to get the entity attributes
-  external_player: none  ##change this to your external media player enity_id: do not include media_player.
+## Substitute names if you want to control additional media players (i.e. media_player.living_room_speaker = living_room_speaker) ##
+## Leave as "none" if not being used ##
+  local_player: esp32_s3box_3 ##if you change the friendly name or the entity_id in HA, you'll need to change it here to get the entity attributes
+  external_player: none  ##to use external, enable the "Output audio externally" switch after installation
   media_player1: none
   media_player2: none
 
 #### Scenes ####
-## Substitute names for scenes to activate ##
+## Substitute names for scenes to activate (i.e. scene.daytime = daytime) ##
+## Leave as "none" if not being used ##
   scene1: none
   scene2: none
+  scene3: none
+  scene4: none
+
+  scene5: none
+  scene6: none
+  scene7: none
+  scene8: none
+
+  scene9: none
+  scene10: none
+  scene11: none
+  scene12: none
 
 #### Weather Entity ####
 ## Change this if you want to use another weather entity (dependent on attributes) ##
@@ -523,6 +537,11 @@ globals:
     initial_value: '1'
 
   - id: media_player_page
+    type: int
+    restore_value: yes
+    initial_value: '1'
+
+  - id: scenes_page_num
     type: int
     restore_value: yes
     initial_value: '1'
@@ -1088,7 +1107,7 @@ text_sensor:
               id(media_player2_progress) = output;
     - component.update: s3_box_lcd 
 
-## Scenes ##
+## Scenes
   - platform: homeassistant
     id: scene1_name
     entity_id: scene.${scene1}
@@ -1099,6 +1118,76 @@ text_sensor:
   - platform: homeassistant
     id: scene2_name
     entity_id: scene.${scene2}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene3_name
+    entity_id: scene.${scene3}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene4_name
+    entity_id: scene.${scene4}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene5_name
+    entity_id: scene.${scene5}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene6_name
+    entity_id: scene.${scene6}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene7_name
+    entity_id: scene.${scene7}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene8_name
+    entity_id: scene.${scene8}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene9_name
+    entity_id: scene.${scene9}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene10_name
+    entity_id: scene.${scene10}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene11_name
+    entity_id: scene.${scene11}
+    attribute: friendly_name
+    on_value:
+      component.update: s3_box_lcd
+
+  - platform: homeassistant
+    id: scene12_name
+    entity_id: scene.${scene12}
     attribute: friendly_name
     on_value:
       component.update: s3_box_lcd
@@ -2567,9 +2656,95 @@ display:
 
           it.printf(5, 205, id(icon_font_30), id(background_mode_set) ? icons_light : icons_dark, "\U000F0493");                  //info
 
-          if (id(scene1_name).state != "") {
+          bool drawCard1 = false;
+          bool drawCard2 = false;
+          bool drawCard3 = false;
+          bool drawCard4 = false;
+
+          switch(id(scenes_page_num)) {
+            case 1:
+              //
+              //Page Controls
+              it.line(46, 39, 75, 39, id(background_mode_set) ? white : icons_secondary_dark);
+              it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A4");
+              it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+              it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+              if (id(scene1_name).state != "") {
+                drawCard1 = true;
+              }
+
+              if (id(scene2_name).state != "") {
+                drawCard2 = true;
+              }
+
+              if (id(scene3_name).state != "") {
+                drawCard3 = true;
+              }
+
+              if (id(scene4_name).state != "") {
+                drawCard4 = true;
+              }
+
+              break;
+            case 2:
+              //
+              //Page Controls
+              it.line(81, 39, 110, 39, id(background_mode_set) ? white : icons_secondary_dark);
+              it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+              it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03A7");
+              it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03AA");
+
+              if (id(scene5_name).state != "") {
+                drawCard1 = true;
+              }
+
+              if (id(scene6_name).state != "") {
+                drawCard2 = true;
+              }
+
+              if (id(scene7_name).state != "") {
+                drawCard3 = true;
+              }
+
+              if (id(scene8_name).state != "") {
+                drawCard4 = true;
+              }
+
+              break;
+            case 3:
+              //
+              //Page Controls
+              it.line(116, 39, 145, 39, id(background_mode_set) ? white : icons_secondary_dark);
+              it.printf(46, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A4");
+              it.printf(81, 5, id(icon_font_30), id(background_mode_set) ? icons_light : icons_secondary_unselected_dark, "\U000F03A7");
+              it.printf(116, 5, id(icon_font_30), id(background_mode_set) ? white : icons_secondary_dark, "\U000F03AA");
+
+              if (id(scene9_name).state != "") {
+                drawCard1 = true;
+              }
+
+              if (id(scene10_name).state != "") {
+                drawCard2 = true;
+              }
+
+              if (id(scene11_name).state != "") {
+                drawCard3 = true;
+              }
+
+              if (id(scene12_name).state != "") {
+                drawCard4 = true;
+              }
+
+              break;
+            default:
+              //do nothing
+              break;
+          }
+
+          if (drawCard1 == true) {
             //
-            //Position 1 - Lovelace Card (Small)
+            //Position 1A - Lovelace Card (Small)
             it.filled_circle(60, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
             it.filled_circle(168, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
             it.filled_circle(60, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
@@ -2588,16 +2763,28 @@ display:
             it.filled_rectangle(56, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
             it.filled_rectangle(168, 54, 5, 60, id(background_mode_set) ? white : sidebar_dark);
 
-            //
-            //Scene1 Entity
             it.filled_circle(114, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
             it.printf(99, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
-            it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene1_name).state.c_str());
+
+            switch(id(scenes_page_num)) {
+              case 1:
+                it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene1_name).state.c_str());
+                break;
+              case 2:
+                it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene5_name).state.c_str());
+                break;
+              case 3:
+                it.printf(114, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene9_name).state.c_str());
+                break;
+              default:
+                //do nothing
+                break;
+            }
           }
 
-          if (id(scene2_name).state != "") {
+          if (drawCard2 == true) {
             //
-            //Position 2 - Lovelace Card (Small)
+            //Position 1B - Lovelace Card (Small)
             it.filled_circle(187, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
             it.filled_circle(295, 53, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-right
             it.filled_circle(187, 115, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
@@ -2616,11 +2803,103 @@ display:
             it.filled_rectangle(183, 54, 5, 62, id(background_mode_set) ? white : sidebar_dark);
             it.filled_rectangle(295, 54, 5, 62, id(background_mode_set) ? white : sidebar_dark);
 
-            //
-            //Scene2 Entity
             it.filled_circle(241, 78, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
             it.printf(226, 63, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
-            it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene2_name).state.c_str());
+
+            switch(id(scenes_page_num)) {
+              case 1:
+                it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene2_name).state.c_str());
+                break;
+              case 2:
+                it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene6_name).state.c_str());
+                break;
+              case 3:
+                it.printf(241, 112, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene10_name).state.c_str());
+                break;
+              default:
+                //do nothing
+                break;
+            }
+          }
+
+          if (drawCard3 == true) {
+            //
+            //Position 2A - Lovelace Card (Small)
+            it.filled_circle(60, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //top-left
+            it.filled_circle(168, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+            it.filled_circle(60, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                     //bottom-left
+            it.filled_circle(168, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-right
+
+            it.filled_rectangle(60, 126, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(55, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(169, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(61, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                             //top-left
+            it.filled_circle(167, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+            it.filled_circle(61, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                             //bottom-left
+            it.filled_circle(167, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-right
+
+            it.filled_rectangle(61, 127, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(56, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(168, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+            it.filled_circle(114, 156, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
+            it.printf(99, 141, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
+
+            switch(id(scenes_page_num)) {
+              case 1:
+                it.printf(114, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene3_name).state.c_str());
+                break;
+              case 2:
+                it.printf(114, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene7_name).state.c_str());
+                break;
+              case 3:
+                it.printf(114, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene11_name).state.c_str());
+                break;
+              default:
+                //do nothing
+                break;
+            }
+          }
+
+          if (drawCard4 == true) {
+            //
+            //Position 2B - Lovelace Card (Small)
+            it.filled_circle(187, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-left
+            it.filled_circle(295, 131, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //top-right
+            it.filled_circle(187, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-left
+            it.filled_circle(295, 193, 5, id(background_mode_set) ? divider_light : divider_dark);                                    //bottom-right
+
+            it.filled_rectangle(187, 126, 108, 73, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(182, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+            it.filled_rectangle(296, 131, 5, 62, id(background_mode_set) ? divider_light : divider_dark);
+
+            it.filled_circle(188, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-left
+            it.filled_circle(294, 132, 5, id(background_mode_set) ? white : sidebar_dark);                                            //top-right
+            it.filled_circle(188, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-left
+            it.filled_circle(294, 192, 5, id(background_mode_set) ? white : sidebar_dark);                                            //bottom-right
+
+            it.filled_rectangle(188, 127, 107, 71, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(183, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+            it.filled_rectangle(295, 132, 5, 60, id(background_mode_set) ? white : sidebar_dark);
+
+            it.filled_circle(241, 156, 20, id(background_mode_set) ? primary_light : icons_secondary_dark);
+            it.printf(226, 141, id(icon_font_30), id(background_mode_set) ? white : icons_dark, "\U000F0FCE");
+
+            switch(id(scenes_page_num)) {
+              case 1:
+                it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene4_name).state.c_str());
+                break;
+              case 2:
+                it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene8_name).state.c_str());
+                break;
+              case 3:
+                it.printf(241, 190, id(roboto_9), id(background_mode_set) ? black : primary_text_color_dark, TextAlign::CENTER, "%.21s", id(scene12_name).state.c_str());
+                break;
+              default:
+                //do nothing
+                break;
+            }
           }
 
 #### Assist Pages ####
@@ -3815,11 +4094,58 @@ binary_sensor:
                     entity_id: media_player.${media_player2}
               - component.update: s3_box_lcd
 
+#### Scenes Page Controls ####
+## These enable the top-bar to change Entity pages. Only change if you know what you are doing ##
+  - platform: touchscreen
+    page_id: scenes_page
+    id: scenes_page_1
+    internal: true
+    x_min: 41
+    x_max: 77
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(scenes_page_num) = 1;
+        - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: scenes_page
+    id: scenes_page_2
+    internal: true
+    x_min: 78
+    x_max: 112
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(scenes_page_num) = 2;
+        - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: scenes_page
+    id: scenes_page_3
+    internal: true
+    x_min: 113
+    x_max: 147
+    y_min: 0
+    y_max: 39
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - lambda: id(scenes_page_num) = 3;
+        - component.update: s3_box_lcd
+
 #### Scene Controls ####
 ## These enable touchscreen controls for scenes specified. Only change if you know what you are doing ##
   - platform: touchscreen
     page_id: scenes_page
-    id: scene1_control
+    id: scene_control1
     x_min: 55
     x_max: 173
     y_min: 48
@@ -3828,16 +4154,36 @@ binary_sensor:
       min_length: 10ms
       max_length: 500ms
       then:
-        - homeassistant.service:
-            service: scene.turn_on
-            data:
-              entity_id: scene.${scene1}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 1) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene1}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene5}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene9}
         - display.page.show: scenes_page
         - component.update: s3_box_lcd
 
   - platform: touchscreen
     page_id: scenes_page
-    id: scene2_control
+    id: scene_control2
     x_min: 183
     x_max: 300
     y_min: 48
@@ -3846,10 +4192,106 @@ binary_sensor:
       min_length: 10ms
       max_length: 500ms
       then:
-        - homeassistant.service:
-            service: scene.turn_on
-            data: 
-              entity_id: scene.${scene2}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 1) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene2}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene6}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene10}
+        - display.page.show: scenes_page
+        - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: scenes_page
+    id: scene_control3
+    x_min: 55
+    x_max: 173
+    y_min: 126
+    y_max: 198
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 1) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene3}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene7}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene11}
+        - display.page.show: scenes_page
+        - component.update: s3_box_lcd
+
+  - platform: touchscreen
+    page_id: scenes_page
+    id: scene_control4
+    x_min: 183
+    x_max: 300
+    y_min: 126
+    y_max: 198
+    on_click:
+      min_length: 10ms
+      max_length: 500ms
+      then:
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 1) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene4}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 2) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene8}
+        - if:
+            condition:
+              - lambda: if (id(scenes_page_num) == 3) {return true;} else {return false;}
+            then:
+              - homeassistant.service:
+                  service: scene.turn_on
+                  data:
+                    entity_id: scene.${scene12}
         - display.page.show: scenes_page
         - component.update: s3_box_lcd
 
