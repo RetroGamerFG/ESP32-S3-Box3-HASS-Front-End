@@ -28,6 +28,6 @@ This fork is only possible through the work done on the main project by BigBobba
 
 # To work on (no particular order)
 - Fix bugs outstanding
-- ~~ Update scenes page to allow more scene entities ~~
+- ~~Update scenes page to allow more scene entities~~
 - Implement icon autofill and bubble colors based on entity type
 - Album artwork (is it possible?) on media player page
