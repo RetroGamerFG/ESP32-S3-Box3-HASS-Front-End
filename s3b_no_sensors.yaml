@@ -13,25 +13,32 @@ substitutions:
   tts_voice_speed: "24000" #options #nabu casa "24000" #piper "16000" elevenlabs "44100" must include quotes
 
 #### Entity Devices ####
-## Substitute names for entities to control and service to perform (i.e. light.lamp & light.toggle) ##
-## Leave as "none.none" if not being used ##
+## Substitute names for entities to control, a service to perform (i.e. light.lamp & light.toggle), and an icon ##
+## Make sure all lines have something or installation might fail! (Leave as "none.none" if not being used) ##
+## Icon names can be found at https://pictogrammers.com/library/mdi/ ##
   entity1: none.none
   entity1_service: none.none
+  entity1_iconS: "help-circle-outline"
 
   entity2: none.none
   entity2_service: none.none
+  entity2_iconS: "help-circle-outline"
 
   entity3: none.none
   entity3_service: none.none
+  entity3_iconS: "help-circle-outline"
 
   entity4: none.none
   entity4_service: none.none
+  entity5_iconS: "help-circle-outline"
 
   entity5: none.none
   entity5_service: none.none
+  entity5_iconS: "help-circle-outline"
 
   entity6: none.none
   entity6_service: none.none
+  entity6_iconS: "help-circle-outline"
 
 #### Media Players ####
 ## Substitute names if you want to control additional media players (i.e. media_player.living_room_speaker = living_room_speaker) ##
@@ -97,7 +104,8 @@ substitutions:
 ## This is used for fonts. DO NOT TOUCH ##
   font_glyphs: '&@!"''%()+=,-_.:°/$€£¥?0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyzÀàÁáÂâÃãÄäĀāĂăÅåǺǻẠạĄąÆæǼǽĆćĈĉČčĊċÇçĎďĐđÐðÈèÉéÊêẼẽĚěËëĒēĔĕĖėẸẹĘęĜĝǦǧĞğĠġĢģĤĥĦħıÌìÍíÎîĨĩÏïĪīĬĭİỊịĮįȷĴĵĶķĸĹĺĽľĻļŁłĿŀŃńÑñŇňŅņƝɲŊŋŉÒòÓóÔôÕõÖöŌōŎŏŐőỌọǪǫØøǾǿŒœŔŕŘřŖŗŚśŜŝŠšŞşȘșẞßŤťŢţȚțŦŧÞþÙùÚúÛûŨũÜüŪūŬŭŮůŰűỤụŲųẀẁẂẃŴŵẄẅỲỳÝýŶŷỸỹŸÿȲȳŹźŽžŻżĲĳƏə'
 
-
+#### End Substituitons - you should be ready to install now ####
+## For advanced users, full configuration begins below ##
 
 esphome:
   name: ${name}
@@ -151,10 +159,6 @@ external_components:
       ref: dev-next
     components: [ adf_pipeline, i2s_audio ]
     refresh: 0s  
-
-  - source: github://clydebarrow/esphome@remote_display
-    refresh: 60min
-    components: [ vnc]   
 
 api:
   on_client_connected:
@@ -1617,6 +1621,32 @@ image:
     resize: 80x75
     type: RGB24
     use_transparency: true 
+
+#### Entity Icons ####
+## Use the substitutions above, and all below will autofill ##
+  - file: mdi:${entity1_iconS}
+    id: entity1_icon
+    resize: 30x30
+
+  - file: mdi:${entity2_iconS}
+    id: entity2_icon
+    resize: 30x30
+
+  - file: mdi:${entity3_iconS}
+    id: entity3_icon
+    resize: 30x30
+
+  - file: mdi:${entity4_iconS}
+    id: entity4_icon
+    resize: 30x30
+
+  - file: mdi:${entity5_iconS}
+    id: entity5_icon
+    resize: 30x30
+
+  - file: mdi:${entity6_iconS}
+    id: entity6_icon
+    resize: 30x30
  
 font:
   - file: "gfonts://Roboto"
@@ -2364,7 +2394,7 @@ display:
               //
               //Entity 1
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 70, id(entity1_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity1_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity1_state).state.c_str());
@@ -2373,7 +2403,7 @@ display:
             if (drawCard2 == true) {
               //Entity 2
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 148, id(entity2_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity2_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity2_state).state.c_str());
@@ -2392,7 +2422,7 @@ display:
               //
               //Entity 3
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 70, id(entity3_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity3_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity3_state).state.c_str());
@@ -2401,7 +2431,7 @@ display:
             if (drawCard2 == true) {
               //Entity 4
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 148, id(entity4_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity4_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity4_state).state.c_str());
@@ -2420,7 +2450,7 @@ display:
               //
               //Entity 5
               it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 70, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 70, id(entity5_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity5_name).state.c_str());
               it.printf(133, 90, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity5_state).state.c_str());
@@ -2429,7 +2459,7 @@ display:
             if (drawCard2 == true) {
               //Entity 6
               it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
-              it.print(81, 148, id(icon_font_30), white, "\U000F097E");
+              it.image(81, 148, id(entity6_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity6_name).state.c_str());
               it.printf(133, 168, id(roboto_12), id(background_mode_set) ? black : primary_text_color_dark, id(entity6_state).state.c_str());
