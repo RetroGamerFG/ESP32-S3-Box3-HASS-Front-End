@@ -20,7 +20,8 @@ This fork is only possible through the work done on the main project by BigBobba
 ![Options   Dark Mode](https://github.com/user-attachments/assets/64fda766-1668-4639-be36-81b0d2e2cfe0)
 
 # Noted issues that may occur / need additional testing
-- Text may run past its card, looking how to limit by characters.
+- ~~Text may run past its card, looking how to limit by characters.~~
+  - Fixed for entities and scenes, but may occur in other spots until caught. 
 - Fresh install untested, recommended to install main project, then update YAML in ESPHome with this fork.
 - Original text files still included, but looking to migrate to Home Assistant fonts (i.e. Roboto).
 - Some aspects (i.e. media player states) dependent on specific attributes required by entity.
@@ -29,5 +30,6 @@ This fork is only possible through the work done on the main project by BigBobba
 # To work on (no particular order)
 - Fix bugs outstanding
 - ~~Update scenes page to allow more scene entities~~
-- Implement icon autofill and bubble colors based on entity type
+- ~~Implement icon autofill and bubble colors based on entity type~~
+  - Partial implementation; icons can change, but seeking a working solution for colors...
 - Album artwork (is it possible?) on media player page
