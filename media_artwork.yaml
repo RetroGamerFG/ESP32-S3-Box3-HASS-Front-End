@@ -1,0 +1,55 @@
+## Due to limitations involving the usage of the online_image component in ESPHome, and at this time only supporting
+## .png images, album artwork doesn't seem like a possibility at this time. Below details some partial code that should
+## work if .jpgs are supported in the future, or if any workarounds become known.
+
+text_sensor:
+  - platform: homeassistant
+    id: local_player_albumart_access
+    entity_id: media_player.${local_player}
+    attribute: entity_picture
+    on_value:
+      - component.update: local_player_albumart_url
+
+  - platform: template
+    id: local_player_albumart_url
+    lambda: |-
+      std::string url = "${home_assistant_host}" + id(local_player_albumart_access).state;
+      return url;
+    update_interval: never
+    on_value:
+      - lambda: 'id(local_player_albumart).set_url(x);'
+      - component.update: local_player_albumart
+
+  - platform: homeassistant
+    id: media_player1_albumart_access
+    entity_id: media_player.${media_player1}
+    attribute: entity_picture
+    on_value:
+      - component.update: media_player1_albumart_url
+
+  - platform: template
+    id: media_player1_albumart_url
+    lambda: |-
+      std::string url = "${home_assistant_host}" + id(media_player1_albumart_access).state;
+      return url;
+    update_interval: never
+    on_value:
+      - lambda: 'id(media_player1_albumart).set_url(x);'
+      - component.update: media_player1_albumart
+
+http_request:
+
+online_image:
+  - url: "https://example.com/example.png"
+    format: jpg
+    id: local_player_albumart
+    resize: 80x80
+    on_download_finished:
+      component.update: s3_box_lcd
+
+  - url: "https://example.com/example.png"
+    format: jpg
+    id: media_player1_albumart
+    resize: 80x80
+    on_download_finished:
+      component.update: s3_box_lcd
