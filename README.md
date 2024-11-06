@@ -32,4 +32,5 @@ This fork is only possible through the work done on the main project by BigBobba
 - ~~Update scenes page to allow more scene entities~~
 - ~~Implement icon autofill and bubble colors based on entity type~~
   - Partial implementation; icons can change, but seeking a working solution for colors...
-- Album artwork (is it possible?) on media player page
+- ~~Album artwork (is it possible?) on media player page~~
+  - Code created for album artwork, but facing limitations with current components.
