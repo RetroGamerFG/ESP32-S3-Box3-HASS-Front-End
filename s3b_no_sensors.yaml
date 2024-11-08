@@ -9,7 +9,7 @@ substitutions:
 #### Home Assistant Fields ####
 ## Add in the server address, set the timezone, and change tts speed if slow ##
   home_assistant_host: http://homeassistant.local:8123
-  local_time: "America/Chicago" 
+  local_time: "America/Chicago"
   tts_voice_speed: "24000" #options #nabu casa "24000" #piper "16000" elevenlabs "44100" must include quotes
 
 #### Entity Devices ####
@@ -167,6 +167,7 @@ api:
     - lambda: id(led).turn_on().set_brightness(id(s_default_brightness).state /100).perform();
     - component.update: s3_box_lcd
     - script.execute: saver_enabled
+    - script.execute: get_entity_types
   on_client_disconnected:
     - lambda: |-
         id(api_connection) = false;
@@ -484,7 +485,59 @@ script:
       - lambda: |-
           id(current_pin) += "0";  
           ESP_LOGD("increment_digit_0", "Current PIN: %s", id(current_pin).c_str()); 
-    
+
+  - id: get_entity_types
+    then:
+      - lambda: |-
+          std::string input[6] = {"${entity1}", "${entity2}", "${entity3}", "${entity4}", "${entity5}", "${entity6}"};
+          std::string delimiter = ".";
+
+          for(int c = 0; c < 6; c++) {
+            id(entity_types)[c] = input[c].substr(0, input[c].find(delimiter));
+          }
+      - script.execute: set_entity_attributes
+
+  - id: set_entity_attributes
+    then:
+      - lambda: |-
+          for(int c = 0; c < 6; c++) {
+            if(id(entity_types)[c] == "light"){
+              id(entity_colors)[c] = yellow;
+            }
+
+            if(id(entity_types)[c] == "switch"){
+              id(entity_colors)[c] = green;
+            }
+
+            if(id(entity_types)[c] == "fan"){
+              id(entity_colors)[c] = blue;
+            }
+
+            if(id(entity_types)[c] == "media_player"){
+              id(entity_colors)[c] = blue;
+            }
+
+            if(id(entity_types)[c] == "sensor"){
+              id(entity_colors)[c] = blue;
+            }
+
+            if(id(entity_types)[c] == "cover"){
+              id(entity_colors)[c] = purple;
+            }
+
+            if(id(entity_types)[c] == "climate"){
+              id(entity_colors)[c] = orange;
+            }
+
+            if(id(entity_types)[c] == "alarm_control_panel"){
+              id(entity_colors)[c] = red;
+            }
+
+            if(id(entity_types)[c] == "none"){
+              id(entity_colors)[c] = gray;
+            }
+          }
+
 globals:
   - id: wifi_connection
     type: bool
@@ -510,6 +563,21 @@ globals:
     type: bool
     restore_value: no
     initial_value: "false"
+
+  - id: entity_states
+    type: bool[6]
+    restore_value: no
+    initial_value: '{false, false, false, false, false, false}'
+
+  - id: entity_types
+    type: std::string[6]
+    restore_value: no
+    initial_value: '{" ", " ", " ", " ", " ", " "}'
+
+  - id: entity_colors
+    type: esphome::Color[6]
+    restore_value: no
+    initial_value: '{gray, gray, gray, gray, gray, gray}'
 
   - id: global_first_active_timer
     type: voice_assistant::Timer
@@ -1212,7 +1280,15 @@ text_sensor:
     id: entity1_state
     entity_id: ${entity1}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity1_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[0] = false;
+          } else {
+            id(entity_states)[0] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity1_name
     entity_id: ${entity1}
@@ -1222,7 +1298,15 @@ text_sensor:
     id: entity2_state
     entity_id: ${entity2}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity2_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[1] = false;
+          } else {
+            id(entity_states)[1] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity2_name
     entity_id: ${entity2}
@@ -1232,7 +1316,15 @@ text_sensor:
     id: entity3_state
     entity_id: ${entity3}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity3_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[2] = false;
+          } else {
+            id(entity_states)[2] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity3_name
     entity_id: ${entity3}
@@ -1242,7 +1334,15 @@ text_sensor:
     id: entity4_state
     entity_id: ${entity4}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity4_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[3] = false;
+          } else {
+            id(entity_states)[3] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity4_name
     entity_id: ${entity4}
@@ -1252,7 +1352,15 @@ text_sensor:
     id: entity5_state
     entity_id: ${entity5}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity5_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[4] = false;
+          } else {
+            id(entity_states)[4] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity5_name
     entity_id: ${entity5}
@@ -1262,7 +1370,15 @@ text_sensor:
     id: entity6_state
     entity_id: ${entity6}
     on_value:
-      component.update: s3_box_lcd
+      - lambda: |-
+          std::string inState = id(entity6_state).state.c_str();
+
+          if(inState == "unavailable" || inState == "off") {
+            id(entity_states)[5] = false;
+          } else {
+            id(entity_states)[5] = true;
+          }
+      - component.update: s3_box_lcd
   - platform: homeassistant
     id: entity6_name
     entity_id: ${entity6}
@@ -2393,7 +2509,7 @@ display:
             if (drawCard1 == true) {
               //
               //Entity 1
-              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 85, 25, id(entity_states)[0] ? id(entity_colors)[0] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 70, id(entity1_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity1_name).state.c_str());
@@ -2401,8 +2517,9 @@ display:
             }
 
             if (drawCard2 == true) {
+              //
               //Entity 2
-              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 163, 25, id(entity_states)[1] ? id(entity_colors)[1] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 148, id(entity2_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity2_name).state.c_str());
@@ -2421,7 +2538,7 @@ display:
             if (drawCard1 == true) {
               //
               //Entity 3
-              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 85, 25, id(entity_states)[2] ? id(entity_colors)[2] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 70, id(entity3_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity3_name).state.c_str());
@@ -2429,8 +2546,9 @@ display:
             }
 
             if (drawCard2 == true) {
+              //
               //Entity 4
-              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 163, 25, id(entity_states)[3] ? id(entity_colors)[3] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 148, id(entity4_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity4_name).state.c_str());
@@ -2449,7 +2567,7 @@ display:
             if (drawCard1 == true) {
               //
               //Entity 5
-              it.filled_circle(96, 85, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 85, 25, id(entity_states)[4] ? id(entity_colors)[4] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 70, id(entity5_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 70, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity5_name).state.c_str());
@@ -2458,7 +2576,7 @@ display:
 
             if (drawCard2 == true) {
               //Entity 6
-              it.filled_circle(96, 163, 25, id(background_mode_set) ? primary_light : icons_dark);
+              it.filled_circle(96, 163, 25, id(entity_states)[5] ? id(entity_colors)[5] : id(background_mode_set) ? gray : icons_dark);
               it.image(81, 148, id(entity6_icon), id(background_mode_set) ? id(white) : id(icons_secondary_dark));
 
               it.printf(133, 148, id(roboto_18), id(background_mode_set) ? black : primary_text_color_dark, "%.16s", id(entity6_name).state.c_str());
